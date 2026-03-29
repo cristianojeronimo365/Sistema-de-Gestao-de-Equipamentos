@@ -71,7 +71,6 @@ project/
 │   ├── empresas.c
 │   ├── postos.c
 │   ├── operacoes.c
-│   └── ficheiros.c
 │
 ├── include/
 │   └── sistema_gestao.h
