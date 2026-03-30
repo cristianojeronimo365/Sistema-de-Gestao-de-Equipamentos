@@ -8,6 +8,16 @@
 #include <unistd.h>
 #include <string.h>
 
+// definição de cores para o terminal
+#define RESET "\033[0m"
+#define RED "\033[31m"
+#define GREEN "\033[32m"
+#define YELLOW "\033[33m"
+#define BLUE "\033[34m"
+#define CYAN "\033[36m"
+#define BOLD "\033[1m"
+
+// enums e structs para o sistema de gestão de componentes, empresas, funcionários, operações e postos de trabalho
 typedef enum
 
 {
