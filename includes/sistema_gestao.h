@@ -7,6 +7,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <string.h>
+#include <locale.h>
 
 // definição de cores para o terminal
 #define RESET "\033[0m"
@@ -88,6 +89,7 @@ typedef struct  s_funcionarios
 typedef struct  s_operacoes
 
 {
+    int     id;
     int     numero_documento_interno;
     int     numero_documento_externo;
     int     id_posto_trabalho;

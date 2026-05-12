@@ -8,12 +8,13 @@ void    menu_principal()
     printf("\t\t------------------------------------------------------------------------------------------\n");
 
     printf("\t\t|" CYAN BOLD "                           O QUE PRETENDES GERIR? ESCOLHA UMA DAS OPÇÕES:               " RESET "|\n");
-    printf("\t\t|" YELLOW "          1 - COMPONETES                                                                " RESET "|\n");
-    printf("\t\t|" YELLOW "          2 - EMPRESAS                                                                  " RESET "|\n");
-    printf("\t\t|" YELLOW "          3 - FUNCIONÁRIOS                                                              " RESET "|\n");
-    printf("\t\t|" YELLOW "          4 - OPERAÇÕES                                                                 " RESET "|\n");
-    printf("\t\t|" YELLOW "          5 - POSTOS DE TRABALHO                                                        " RESET "|\n");
-    printf("\t\t|" RED "          6 - SAIR                                                                      " RESET "|\n");
+    printf("\t\t|" YELLOW "          1 - EMPRESAS                                                                  " RESET "|\n");
+    printf("\t\t|" YELLOW "          2 - FUNCIONÁRIOS                                                              " RESET "|\n");
+    printf("\t\t|" YELLOW "          3 - POSTOS DE TRABALHO                                                        " RESET "|\n");
+    printf("\t\t|" YELLOW "          4 - COMPONENTES                                                               " RESET "|\n");
+    printf("\t\t|" YELLOW "          5 - OPERAÇÕES                                                                 " RESET "|\n");
+    printf("\t\t|" YELLOW "          6 - CONSULTAS E ESTATÍSTICAS                                                  " RESET "|\n");
+    printf("\t\t|" RED "          0 - SAIR                                                                      " RESET "|\n");
 
     printf("\t\t------------------------------------------------------------------------------------------\n");
 }
@@ -26,10 +27,11 @@ void menu_componentes()
     printf("\t\t|" CYAN BOLD "                           O QUE PRETENDES FAZER? ESCOLHA UMA DAS OPÇÕES:               " RESET "|\n");
     printf("\t\t|" YELLOW "          1 - ADICIONAR COMPONENTE                                                      " RESET "|\n");
     printf("\t\t|" YELLOW "          2 - LISTAR COMPONENTES                                                        " RESET "|\n");
-    printf("\t\t|" YELLOW "          3 - PESQUISAR COMPONENTE POR ID                                               " RESET "|\n");
-    printf("\t\t|" YELLOW "          4 - ATUALIZAR COMPONENTE POR ID                                               " RESET "|\n");
-    printf("\t\t|" YELLOW "          5 - REMOVER COMPONENTE POR ID                                                 " RESET "|\n");
-    printf("\t\t|" RED "          6 - VOLTAR AO MENU PRINCIPAL                                                  " RESET "|\n");
+    printf("\t\t|" YELLOW "          3 - PESQUISAR COMPONENTE                                                      " RESET "|\n");
+    printf("\t\t|" YELLOW "          4 - ATUALIZAR COMPONENTE                                                      " RESET "|\n");
+    printf("\t\t|" YELLOW "          5 - REMOVER COMPONENTE                                                        " RESET "|\n");
+    printf("\t\t|" YELLOW "          6 - MOVER COMPONENTE                                                          " RESET "|\n");
+    printf("\t\t|" RED "          0 - VOLTAR AO MENU PRINCIPAL                                                  " RESET "|\n");
 
     printf("\t\t------------------------------------------------------------------------------------------\n");
 }
@@ -42,10 +44,10 @@ void menu_empresas()
     printf("\t\t|" CYAN BOLD "                           O QUE PRETENDES FAZER? ESCOLHA UMA DAS OPÇÕES:               " RESET "|\n");
     printf("\t\t|" YELLOW "          1 - ADICIONAR EMPRESA                                                         " RESET "|\n");
     printf("\t\t|" YELLOW "          2 - LISTAR EMPRESAS                                                           " RESET "|\n");
-    printf("\t\t|" YELLOW "          3 - PESQUISAR EMPRESA POR ID                                                  " RESET "|\n");
-    printf("\t\t|" YELLOW "          4 - ATUALIZAR EMPRESA POR ID                                                  " RESET "|\n");
-    printf("\t\t|" YELLOW "          5 - REMOVER EMPRESA POR ID                                                    " RESET "|\n");
-    printf("\t\t|" RED "          6 - VOLTAR AO MENU PRINCIPAL                                                  " RESET "|\n");
+    printf("\t\t|" YELLOW "          3 - PESQUISAR EMPRESA                                                         " RESET "|\n");
+    printf("\t\t|" YELLOW "          4 - ATUALIZAR EMPRESA                                                         " RESET "|\n");
+    printf("\t\t|" YELLOW "          5 - REMOVER EMPRESA                                                           " RESET "|\n");
+    printf("\t\t|" RED "          0 - VOLTAR AO MENU PRINCIPAL                                                  " RESET "|\n");
 
     printf("\t\t------------------------------------------------------------------------------------------\n");
 }
@@ -58,10 +60,10 @@ void menu_funcionarios()
     printf("\t\t|" CYAN BOLD "                           O QUE PRETENDES FAZER? ESCOLHA UMA DAS OPÇÕES:               " RESET "|\n");
     printf("\t\t|" YELLOW "          1 - ADICIONAR FUNCIONÁRIO                                                     " RESET "|\n");
     printf("\t\t|" YELLOW "          2 - LISTAR FUNCIONÁRIOS                                                       " RESET "|\n");
-    printf("\t\t|" YELLOW "          3 - PESQUISAR FUNCIONÁRIO POR ID                                              " RESET "|\n");
-    printf("\t\t|" YELLOW "          4 - ATUALIZAR FUNCIONÁRIO POR ID                                              " RESET "|\n");
-    printf("\t\t|" YELLOW "          5 - REMOVER FUNCIONÁRIO POR ID                                                " RESET "|\n");
-    printf("\t\t|" RED "          6 - VOLTAR AO MENU PRINCIPAL                                                  " RESET "|\n");
+    printf("\t\t|" YELLOW "          3 - PESQUISAR FUNCIONÁRIO                                                     " RESET "|\n");
+    printf("\t\t|" YELLOW "          4 - ATUALIZAR FUNCIONÁRIO                                                     " RESET "|\n");
+    printf("\t\t|" YELLOW "          5 - REMOVER FUNCIONÁRIO                                                       " RESET "|\n");
+    printf("\t\t|" RED "          0 - VOLTAR AO MENU PRINCIPAL                                                  " RESET "|\n");
 
     printf("\t\t------------------------------------------------------------------------------------------\n");
 }
@@ -72,12 +74,11 @@ void menu_operacoes()
     printf("\t\t------------------------------------------------------------------------------------------\n");
 
     printf("\t\t|" CYAN BOLD "                           O QUE PRETENDES FAZER? ESCOLHA UMA DAS OPÇÕES:               " RESET "|\n");
-    printf("\t\t|" YELLOW "          1 - ADICIONAR OPERAÇÃO                                                        " RESET "|\n");
-    printf("\t\t|" YELLOW "          2 - LISTAR OPERAÇÕES                                                          " RESET "|\n");
-    printf("\t\t|" YELLOW "          3 - PESQUISAR OPERAÇÃO POR ID                                                 " RESET "|\n");
-    printf("\t\t|" YELLOW "          4 - ATUALIZAR OPERAÇÃO POR ID                                                 " RESET "|\n");
-    printf("\t\t|" YELLOW "          5 - REMOVER OPERAÇÃO POR ID                                                   " RESET "|\n");
-    printf("\t\t|" RED "          6 - VOLTAR AO MENU PRINCIPAL                                                  " RESET "|\n");
+    printf("\t\t|" YELLOW "          1 - REGISTRAR ENTRADA DE COMPONENTE                                           " RESET "|\n");
+    printf("\t\t|" YELLOW "          2 - REGISTRAR SAÍDA DE COMPONENTE                                             " RESET "|\n");
+    printf("\t\t|" YELLOW "          3 - LISTAR OPERAÇÕES                                                          " RESET "|\n");
+    printf("\t\t|" YELLOW "          4 - PESQUISAR OPERAÇÃO                                                        " RESET "|\n");
+    printf("\t\t|" RED "          0 - VOLTAR AO MENU PRINCIPAL                                                  " RESET "|\n");
 
     printf("\t\t------------------------------------------------------------------------------------------\n");
 }
@@ -90,10 +91,27 @@ void menu_postos()
     printf("\t\t|" CYAN BOLD "                           O QUE PRETENDES FAZER? ESCOLHA UMA DAS OPÇÕES:               " RESET "|\n");
     printf("\t\t|" YELLOW "          1 - ADICIONAR POSTO DE TRABALHO                                               " RESET "|\n");
     printf("\t\t|" YELLOW "          2 - LISTAR POSTOS DE TRABALHO                                                 " RESET "|\n");
-    printf("\t\t|" YELLOW "          3 - PESQUISAR POSTO DE TRABALHO POR ID                                        " RESET "|\n");
-    printf("\t\t|" YELLOW "          4 - ATUALIZAR POSTO DE TRABALHO POR ID                                        " RESET "|\n");
-    printf("\t\t|" YELLOW "          5 - REMOVER POSTO DE TRABALHO POR ID                                          " RESET "|\n");
-    printf("\t\t|" RED "          6 - VOLTAR AO MENU PRINCIPAL                                                  " RESET "|\n");
+    printf("\t\t|" YELLOW "          3 - PESQUISAR POSTO DE TRABALHO                                               " RESET "|\n");
+    printf("\t\t|" YELLOW "          4 - ATUALIZAR POSTO DE TRABALHO                                               " RESET "|\n");
+    printf("\t\t|" YELLOW "          5 - REMOVER POSTO DE TRABALHO                                                 " RESET "|\n");
+    printf("\t\t|" RED "          0 - VOLTAR AO MENU PRINCIPAL                                                  " RESET "|\n");
+
+    printf("\t\t------------------------------------------------------------------------------------------\n");
+}
+
+void menu_avancados()
+
+{
+    printf("\t\t------------------------------------------------------------------------------------------\n");
+
+    printf("\t\t|" CYAN BOLD "                           O QUE PRETENDES CONSULTAR? ESCOLHA UMA DAS OPÇÕES:           " RESET "|\n");
+    printf("\t\t|" YELLOW "          1 - COMPONENTES POR POSTO                                                     " RESET "|\n");
+    printf("\t\t|" YELLOW "          2 - COMPONENTES EM GARANTIA                                                   " RESET "|\n");
+    printf("\t\t|" YELLOW "          3 - COMPONENTES ATRASADOS                                                     " RESET "|\n");
+    printf("\t\t|" YELLOW "          4 - EMPRESAS MAIS UTILIZADAS                                                  " RESET "|\n");
+    printf("\t\t|" YELLOW "          5 - OPERAÇÕES POR EMPRESA                                                     " RESET "|\n");
+    printf("\t\t|" YELLOW "          6 - OPERAÇÕES POR FUNCIONÁRIO                                                 " RESET "|\n");
+    printf("\t\t|" RED "          0 - VOLTAR AO MENU PRINCIPAL                                                  " RESET "|\n");
 
     printf("\t\t------------------------------------------------------------------------------------------\n");
 }
@@ -115,22 +133,26 @@ void    run_options_componentes()
             break;
         case 2:
             /*system("clear");
-            listar__componente();*/
+            listar_componente();*/
             break;
         case 3:
             /*system("clear");
-            pesquisar__componente();*/
+            pesquisar_componente();*/
             break;
         case 4:
             /*system("clear");
-            actualizar__componente();*/
+            actualizar_componente();*/
             break;
         case 5:
             /*system("clear");
-            remover__componente();*/
+            remover_componente();*/
             break;
         case 6:
-            printf("\t\t" RED "A VOLTAR AO MENU PRINCIPAL...\n" RESET);
+            /*system("clear");
+            mover_componente();*/
+            break;
+        case 0:
+            printf("\t\t" RED "VOLTANDO PARA O MENU PRINCIPAL...\n" RESET);
             sleep(1);
             main();
             break;
@@ -156,22 +178,22 @@ void    run_options_empresas()
             break;
         case 2:
             /*system("clear");
-            listar__empresa();*/
+            listar_empresa();*/
             break;
         case 3:
             /*system("clear");
-            pesquisar__empresa();*/
+            pesquisar_empresa();*/
             break;
         case 4:
             /*system("clear");
-            actualizar__empresa();*/
+            actualizar_empresa();*/
             break;
         case 5:
             /*system("clear");
-            remover__empresa();*/
+            remover_empresa();*/
             break;
-        case 6:
-            printf("\t\t" RED "A VOLTAR AO MENU PRINCIPAL...\n" RESET);
+        case 0:
+            printf("\t\t" RED "VOLTANDO PARA O MENU PRINCIPAL...\n" RESET);
             sleep(1);
             main();
             break;
@@ -198,22 +220,22 @@ void    run_options_funcionarios()
             break;
         case 2:
             /*system("clear");
-            listar__funcionario();*/
+            listar_funcionario();*/
             break;
         case 3:
             /*system("clear");
-            pesquisar__funcionario();*/
+            pesquisar_funcionario();*/
             break;
         case 4:
             /*system("clear");
-            actualizar__funcionario();*/
+            actualizar_funcionario();*/
             break;
         case 5:
             /*system("clear");
-            remover__funcionario();*/
+            remover_funcionario();*/
             break;
-        case 6:
-            printf("\t\t" RED "A VOLTAR AO MENU PRINCIPAL...\n" RESET);
+        case 0:
+            printf("\t\t" RED "VOLTANDO PARA O MENU PRINCIPAL...\n" RESET);
             sleep(1);
             main();
             break;
@@ -235,26 +257,22 @@ void    run_options_operacoes()
     {
         case 1:
             /*system("clear");
-            adicionar_operacao();*/
+            registrar_entrada_componente();*/
             break;
         case 2:
             /*system("clear");
-            listar__operacao();*/
+            registrar_saida_componente();*/
             break;
         case 3:
             /*system("clear");
-            pesquisar__operacao();*/
+            listar_operacao();*/
             break;
         case 4:
             /*system("clear");
-            actualizar__operacao();*/
+            pesquisar_operacao();*/
             break;
-        case 5:
-            /*system("clear");
-            remover__operacao();*/
-            break;
-        case 6:
-            printf("\t\t" RED "A VOLTAR AO MENU PRINCIPAL...\n" RESET);
+        case 0:
+            printf("\t\t" RED "VOLTANDO PARA O MENU PRINCIPAL...\n" RESET);
             sleep(1);
             main();
             break;
@@ -280,22 +298,67 @@ void    run_options_postos()
             break;
         case 2:
             /*system("clear");
-            listar__posto();*/
+            listar_posto();*/
             break;
         case 3:
             /*system("clear");
-            pesquisar__posto();*/
+            pesquisar_posto();*/
             break;
         case 4:
             /*system("clear");
-            actualizar__posto();*/
+            actualizar_posto();*/
             break;
         case 5:
             /*system("clear");
-            remover__posto();*/
+            remover_posto();*/
+            break;
+        case 0:
+            printf("\t\t" RED "VOLTANDO PARA O MENU PRINCIPAL...\n" RESET);
+            sleep(1);
+            main();
+            break;
+        default:
+            printf("\t\t" RED "OPÇÃO INVÁLIDA! TENTE NOVAMENTE.\n" RESET);
+    }
+}
+
+void    run_options_avancadas()
+
+{
+    int opcao;
+
+    menu_avancados();
+    printf("\t\t" GREEN "ESCOLHA UMA OPÇÃO: " RESET);
+    sleep(1);
+    scanf("%d", &opcao);
+    switch (opcao)
+    {
+        case 1:
+            /*system("clear");
+            componentes_posto();*/
+            break;
+        case 2:
+            /*system("clear");
+            componentes_garantia();*/
+            break;
+        case 3:
+            /*system("clear");
+            componentes_atrasados();*/
+            break;
+        case 4:
+            /*system("clear");
+            empresas_utilizadas();*/
+            break;
+        case 5:
+            /*system("clear");
+            operacoes_empresa();*/
             break;
         case 6:
-            printf("\t\t" RED "A VOLTAR AO MENU PRINCIPAL...\n" RESET);
+            /*system("clear");
+            operacoes_funcionario();*/
+            break;
+        case 0:
+            printf("\t\t" RED "VOLTANDO PARA O MENU PRINCIPAL...\n" RESET);
             sleep(1);
             main();
             break;
@@ -309,6 +372,7 @@ int main()
 {
     int opcao;
 
+    setlocale(LC_ALL, "PORTUGUESE");
     system("clear");
     menu_principal();
     printf("\t\t" GREEN "ESCOLHA UMA OPÇÃO: " RESET);
@@ -318,26 +382,30 @@ int main()
     {
         case 1:
             system("clear");
-            run_options_componentes();
+            run_options_empresas();
             break;
         case 2:
             system("clear");
-            run_options_empresas();
+            run_options_funcionarios();
             break;
         case 3:
             system("clear");
-            run_options_funcionarios();
+            run_options_postos();
             break;
         case 4:
             system("clear");
-            run_options_operacoes();
+            run_options_componentes();
             break;
         case 5:
             system("clear");
-            run_options_postos();
+            run_options_operacoes();
             break;
         case 6:
-            printf("\t\t" RED "A SAIR DO SISTEMA...\n" RESET);
+            system("clear");
+            run_options_avancadas();
+            break;
+        case 0:
+            printf("\t\t" RED "SAINDO DO SISTEMA...\n" RESET);
             sleep(1);
             exit(0);
         default:
