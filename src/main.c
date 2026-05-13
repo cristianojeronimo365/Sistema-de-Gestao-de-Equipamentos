@@ -1,4 +1,6 @@
 #include "../includes/sistema_gestao.h"
+#include "../includes/globals.h"
+#include "../includes/ficheiros.h"
 
 int main();
 
@@ -384,6 +386,7 @@ int main()
 
     setlocale(LC_ALL, "PORTUGUESE");
     system("clear");
+    carregarDados();
     menu_principal();
     printf("\t\t" GREEN "ESCOLHA UMA OPÇÃO: " RESET);
     sleep(1);
@@ -421,5 +424,6 @@ int main()
         default:
             printf("\t\t" RED "OPÇÃO INVÁLIDA! TENTE NOVAMENTE.\n" RESET);
     }
+    salvarDados();
     return (0);
 }

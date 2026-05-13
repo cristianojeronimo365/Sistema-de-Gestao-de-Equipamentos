@@ -1,6 +1,8 @@
+// =====================================================
+// ficheiro: sistema_gestao.h
+// =====================================================
 
 #ifndef SISTEMA_GESTAO_H
-
 # define SISTEMA_GESTAO_H
 
 #include <stdio.h>
@@ -17,6 +19,16 @@
 #define BLUE "\033[34m"
 #define CYAN "\033[36m"
 #define BOLD "\033[1m"
+
+// =====================================================
+// LIMITES
+// =====================================================
+
+# define MAX_EMPRESAS       100
+# define MAX_FUNCIONARIOS   100
+# define MAX_POSTOS         100
+# define MAX_COMPONENTES    100
+# define MAX_OPERACOES      100
 
 // =====================================================
 // ENUMS
@@ -42,7 +54,6 @@ typedef enum
     AGENCIA
 } TipoEmpresa;
 
-// Tipo do processo/operação
 typedef enum
 {
     GARANTIA,
@@ -51,7 +62,6 @@ typedef enum
     TRANSFERENCIA
 } TipoProcesso;
 
-// Estado atual da operação
 typedef enum
 {
     PENDENTE,
@@ -60,9 +70,8 @@ typedef enum
     CANCELADO
 } StatusOperacao;
 
-
 // =====================================================
-// COMPONENTES
+// STRUCTS
 // =====================================================
 
 typedef struct s_componentes
@@ -86,11 +95,6 @@ typedef struct s_componentes
 
 } t_componentes;
 
-
-// =====================================================
-// POSTOS DE TRABALHO
-// =====================================================
-
 typedef struct s_posto_trabalhos
 {
     int     id;
@@ -105,11 +109,6 @@ typedef struct s_posto_trabalhos
 
 } t_posto_trabalhos;
 
-
-// =====================================================
-// FUNCIONÁRIOS
-// =====================================================
-
 typedef struct s_funcionarios
 {
     int     id;
@@ -120,11 +119,6 @@ typedef struct s_funcionarios
     char    descricao[100];
 
 } t_funcionarios;
-
-
-// =====================================================
-// EMPRESAS
-// =====================================================
 
 typedef struct s_empresas
 {
@@ -137,11 +131,6 @@ typedef struct s_empresas
     char            contacto[20];
 
 } t_empresas;
-
-
-// =====================================================
-// OPERAÇÕES / PROCESSOS
-// =====================================================
 
 typedef struct s_operacoes
 {
@@ -158,13 +147,8 @@ typedef struct s_operacoes
     TipoProcesso        tipo_processo;
     StatusOperacao      status;
 
-    // quando o componente saiu
     char                data_saida[11];
-
-    // previsão de retorno/conclusão
     char                data_prevista[11];
-
-    // quando o processo foi concluído
     char                data_conclusao[11];
 
     double              montante;
@@ -172,6 +156,5 @@ typedef struct s_operacoes
     char                observacao[100];
 
 } t_operacoes;
-
 
 #endif
