@@ -74,10 +74,12 @@ void menu_operacoes()
     printf("\t\t------------------------------------------------------------------------------------------\n");
 
     printf("\t\t|" CYAN BOLD "                           O QUE PRETENDES FAZER? ESCOLHA UMA DAS OPÇÕES:               " RESET "|\n");
-    printf("\t\t|" YELLOW "          1 - REGISTRAR ENTRADA DE COMPONENTE                                           " RESET "|\n");
-    printf("\t\t|" YELLOW "          2 - REGISTRAR SAÍDA DE COMPONENTE                                             " RESET "|\n");
+    printf("\t\t|" YELLOW "          1 - CRIAR OPERAÇÃO                                                            " RESET "|\n");
+    printf("\t\t|" YELLOW "          2 - ATUALIZAR OPERAÇÃO                                                        " RESET "|\n");
     printf("\t\t|" YELLOW "          3 - LISTAR OPERAÇÕES                                                          " RESET "|\n");
     printf("\t\t|" YELLOW "          4 - PESQUISAR OPERAÇÃO                                                        " RESET "|\n");
+    printf("\t\t|" YELLOW "          5 - OPERAÇÕES PENDENTES                                                       " RESET "|\n");
+    printf("\t\t|" YELLOW "          6 - OPERAÇÕES CONCLUÍDAS                                                      " RESET "|\n");
     printf("\t\t|" RED "          0 - VOLTAR AO MENU PRINCIPAL                                                  " RESET "|\n");
 
     printf("\t\t------------------------------------------------------------------------------------------\n");
@@ -257,11 +259,11 @@ void    run_options_operacoes()
     {
         case 1:
             /*system("clear");
-            registrar_entrada_componente();*/
+            criar_operacao();*/
             break;
         case 2:
             /*system("clear");
-            registrar_saida_componente();*/
+            atualizar_operacao();*/
             break;
         case 3:
             /*system("clear");
@@ -270,6 +272,14 @@ void    run_options_operacoes()
         case 4:
             /*system("clear");
             pesquisar_operacao();*/
+            break;
+        case 5:
+            /*system("clear");
+            operacoes_pendentes();*/
+            break;
+        case 6:
+            /*system("clear");
+            operacoes_concluidas();*/
             break;
         case 0:
             printf("\t\t" RED "VOLTANDO PARA O MENU PRINCIPAL...\n" RESET);
