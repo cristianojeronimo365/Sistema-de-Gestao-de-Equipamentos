@@ -1,13 +1,5 @@
-// =====================================================
-// ficheiro: ficheiros.c
-// =====================================================
-
 #include "../includes/globals.h"
 #include "../includes/ficheiros.h"
-
-// =====================================================
-// EMPRESAS
-// =====================================================
 
 static void carregarEmpresas(void)
 {
@@ -35,10 +27,6 @@ static void salvarEmpresas(void)
 
     fclose(fp);
 }
-
-// =====================================================
-// FUNCIONÁRIOS
-// =====================================================
 
 static void carregarFuncionarios(void)
 {
@@ -70,10 +58,6 @@ static void salvarFuncionarios(void)
     fclose(fp);
 }
 
-// =====================================================
-// POSTOS
-// =====================================================
-
 static void carregarPostos(void)
 {
     FILE *fp;
@@ -103,10 +87,6 @@ static void salvarPostos(void)
 
     fclose(fp);
 }
-
-// =====================================================
-// COMPONENTES
-// =====================================================
 
 static void carregarComponentes(void)
 {
@@ -138,10 +118,6 @@ static void salvarComponentes(void)
     fclose(fp);
 }
 
-// =====================================================
-// OPERAÇÕES
-// =====================================================
-
 static void carregarOperacoes(void)
 {
     FILE *fp;
@@ -171,10 +147,6 @@ static void salvarOperacoes(void)
 
     fclose(fp);
 }
-
-// =====================================================
-// FUNÇÕES GERAIS
-// =====================================================
 
 void carregarDados(void)
 {

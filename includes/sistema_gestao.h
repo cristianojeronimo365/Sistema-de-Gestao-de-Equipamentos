@@ -1,7 +1,3 @@
-// =====================================================
-// ficheiro: sistema_gestao.h
-// =====================================================
-
 #ifndef SISTEMA_GESTAO_H
 # define SISTEMA_GESTAO_H
 
@@ -11,9 +7,6 @@
 #include <string.h>
 #include <locale.h>
 
-
-
-// definição de cores para o terminal
 #define RESET "\033[0m"
 #define RED "\033[31m"
 #define GREEN "\033[32m"
@@ -21,10 +14,6 @@
 #define BLUE "\033[34m"
 #define CYAN "\033[36m"
 #define BOLD "\033[1m"
-
-// =====================================================
-// ENUMS
-// =====================================================
 
 typedef enum
 {
@@ -61,10 +50,6 @@ typedef enum
     CONCLUIDO,
     CANCELADO
 } StatusOperacao;
-
-// =====================================================
-// STRUCTS
-// =====================================================
 
 typedef struct s_componentes
 {

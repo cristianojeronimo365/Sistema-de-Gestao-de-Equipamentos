@@ -1,9 +1,6 @@
 #include "../includes/empresas.h"
 #include "../includes/sistema_gestao.h"
 
-// =====================================================
-// FUNÇÃO AUXILIAR
-// =====================================================
 
 static const char *obterTipoEmpresa(TipoEmpresa tipo)
 {
@@ -26,28 +23,22 @@ void adicionar_empresa(void)
 {
     t_empresas nova_empresa;
 
-    // verificar limite
     if (total_empresas >= MAX_EMPRESAS)
     {
         printf(RED "LIMITE DE EMPRESAS ATINGIDO.\n" RESET);
         return ;
     }
 
-    // gerar ID automático
     nova_empresa.id = total_empresas + 100;
 
-    // limpar buffer
     getchar();
 
-    // nome
     printf(GREEN "NOME DA EMPRESA: " RESET);
     fgets(nova_empresa.nome,
             sizeof(nova_empresa.nome), stdin);
     printf("------------------------------------------------------------------------------------------\n");
-    nova_empresa.nome[
-        strcspn(nova_empresa.nome, "\n")] = '\0';
+    nova_empresa.nome[strcspn(nova_empresa.nome, "\n")] = '\0';
 
-    // tipo
     printf(GREEN "TIPO DA EMPRESA:\n" RESET);
     printf(YELLOW "0 - FORNECEDOR\n"RESET);
     printf(YELLOW "1 - FABRICANTE\n"RESET);
@@ -58,8 +49,7 @@ void adicionar_empresa(void)
         printf(GREEN "ESCOLHA UM TIPO CORRESPONDENTE: " RESET);
         scanf("%d", (int *)&nova_empresa.tipo);
     }while(!obterTipoEmpresa(nova_empresa.tipo));
-    
-    // contacto
+
     getchar();
     printf("------------------------------------------------------------------------------------------\n");
     do{
@@ -69,21 +59,14 @@ void adicionar_empresa(void)
 
     nova_empresa.contacto[strcspn(nova_empresa.contacto, "\n")] = '\0';
 
-    // adicionar no array
     empresas[total_empresas] = nova_empresa;
 
-    // incrementar contador
     total_empresas++;
 
-    // salvar no ficheiro
     salvarDados();
     printf("------------------------------------------------------------------------------------------\n");
     printf(GREEN "EMPRESA ADICIONADA COM SUCESSO...\n" RESET);
 }
-
-// =====================================================
-// LISTAR EMPRESAS
-// =====================================================
 
 void listar_empresa(void)
 {
