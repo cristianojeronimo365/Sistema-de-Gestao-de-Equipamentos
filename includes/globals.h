@@ -5,7 +5,17 @@
 #ifndef GLOBALS_H
 # define GLOBALS_H
 
-# include "sistema_gestao.h"
+#include "sistema_gestao.h"
+
+// =====================================================
+// LIMITES
+// =====================================================
+
+# define MAX_EMPRESAS       100
+# define MAX_FUNCIONARIOS   100
+# define MAX_POSTOS         100
+# define MAX_COMPONENTES    100
+# define MAX_OPERACOES      100
 
 // arrays globais
 extern t_empresas          empresas[MAX_EMPRESAS];

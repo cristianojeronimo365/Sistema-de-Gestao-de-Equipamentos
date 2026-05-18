@@ -13,7 +13,7 @@ static void carregarEmpresas(void)
 {
     FILE *fp;
 
-    fp = fopen("../data/empresas.dat", "rb");
+    fp = fopen("data/empresas.dat", "rb");
     if (!fp)
         return ;
 
@@ -27,10 +27,9 @@ static void salvarEmpresas(void)
 {
     FILE *fp;
 
-    fp = fopen("../data/empresas.dat", "wb");
+    fp = fopen("data/empresas.dat", "wb");
     if (!fp)
         return ;
-
     fwrite(&total_empresas, sizeof(int), 1, fp);
     fwrite(empresas, sizeof(t_empresas), total_empresas, fp);
 

@@ -11,6 +11,8 @@
 #include <string.h>
 #include <locale.h>
 
+
+
 // definição de cores para o terminal
 #define RESET "\033[0m"
 #define RED "\033[31m"
@@ -19,16 +21,6 @@
 #define BLUE "\033[34m"
 #define CYAN "\033[36m"
 #define BOLD "\033[1m"
-
-// =====================================================
-// LIMITES
-// =====================================================
-
-# define MAX_EMPRESAS       100
-# define MAX_FUNCIONARIOS   100
-# define MAX_POSTOS         100
-# define MAX_COMPONENTES    100
-# define MAX_OPERACOES      100
 
 // =====================================================
 // ENUMS

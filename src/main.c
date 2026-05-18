@@ -1,7 +1,6 @@
 #include "../includes/sistema_gestao.h"
-#include "../includes/globals.h"
 #include "../includes/ficheiros.h"
-
+#include "../includes/empresas.h"
 int main();
 
 void    menu_principal()
@@ -177,12 +176,12 @@ void    run_options_empresas()
     switch (opcao)
     {
         case 1:
-            /*system("clear");
-            adicionar_empresa();*/
+            system("clear");
+            adicionar_empresa();
             break;
         case 2:
-            /*system("clear");
-            listar_empresa();*/
+            system("clear");
+            listar_empresa();
             break;
         case 3:
             /*system("clear");
