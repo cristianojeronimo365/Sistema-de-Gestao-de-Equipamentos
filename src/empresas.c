@@ -68,7 +68,7 @@ void adicionar_empresa(void)
     printf(GREEN "EMPRESA ADICIONADA COM SUCESSO...\n" RESET);
 }
 
-void listar_empresa(void)
+int listar_empresa(void)
 {
     int i;
     int len;
@@ -76,7 +76,7 @@ void listar_empresa(void)
     if (total_empresas == 0)
     {
         printf(RED "\nNENHUMA EMPRESA CADASTRADA.\n" RESET);
-        return ;
+        return (0);
     }
 
     i = 0;
@@ -119,4 +119,5 @@ void listar_empresa(void)
         printf(GREEN"\t\t\t-------------------------------------------------------------------------\n"RESET);
         i++;
     }
+	return (1);
 }

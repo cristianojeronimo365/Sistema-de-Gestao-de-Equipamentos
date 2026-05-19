@@ -32,7 +32,7 @@ static void carregarFuncionarios(void)
 {
     FILE *fp;
 
-    fp = fopen("../data/funcionarios.dat", "rb");
+    fp = fopen("data/funcionarios.dat", "rb");
     if (!fp)
         return ;
 
@@ -47,7 +47,7 @@ static void salvarFuncionarios(void)
 {
     FILE *fp;
 
-    fp = fopen("../data/funcionarios.dat", "wb");
+    fp = fopen("data/funcionarios.dat", "wb");
     if (!fp)
         return ;
 
@@ -62,7 +62,7 @@ static void carregarPostos(void)
 {
     FILE *fp;
 
-    fp = fopen("../data/postos.dat", "rb");
+    fp = fopen("data/postos.dat", "rb");
     if (!fp)
         return ;
 
@@ -77,7 +77,7 @@ static void salvarPostos(void)
 {
     FILE *fp;
 
-    fp = fopen("../data/postos.dat", "wb");
+    fp = fopen("data/postos.dat", "wb");
     if (!fp)
         return ;
 
@@ -92,7 +92,7 @@ static void carregarComponentes(void)
 {
     FILE *fp;
 
-    fp = fopen("../data/componentes.dat", "rb");
+    fp = fopen("data/componentes.dat", "rb");
     if (!fp)
         return ;
 
@@ -107,7 +107,7 @@ static void salvarComponentes(void)
 {
     FILE *fp;
 
-    fp = fopen("../data/componentes.dat", "wb");
+    fp = fopen("data/componentes.dat", "wb");
     if (!fp)
         return ;
 
@@ -122,7 +122,7 @@ static void carregarOperacoes(void)
 {
     FILE *fp;
 
-    fp = fopen("../data/operacoes.dat", "rb");
+    fp = fopen("data/operacoes.dat", "rb");
     if (!fp)
         return ;
 
@@ -137,7 +137,7 @@ static void salvarOperacoes(void)
 {
     FILE *fp;
 
-    fp = fopen("../data/operacoes.dat", "wb");
+    fp = fopen("data/operacoes.dat", "wb");
     if (!fp)
         return ;
 

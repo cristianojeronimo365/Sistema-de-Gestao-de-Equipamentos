@@ -1,6 +1,11 @@
 #include "../includes/sistema_gestao.h"
 #include "../includes/ficheiros.h"
 #include "../includes/empresas.h"
+#include "../includes/funcionarios.h"
+#include "../includes/postos.h"
+#include "../includes/componentes.h"
+#include "../includes/operacoes.h"
+
 int main();
 
 void    menu_principal()
@@ -131,12 +136,12 @@ void    run_options_componentes()
     switch (opcao)
     {
         case 1:
-            /*system("clear");
-            adicionar_componente();*/
+            system("clear");
+            adicionar_componente();
             break;
         case 2:
-            /*system("clear");
-            listar_componente();*/
+            system("clear");
+            listar_componente();
             break;
         case 3:
             /*system("clear");
@@ -218,12 +223,12 @@ void    run_options_funcionarios()
     switch (opcao)
     {
         case 1:
-            /*system("clear");
-            adicionar_funcionario();*/
+            system("clear");
+            adicionar_funcionario();
             break;
         case 2:
-            /*system("clear");
-            listar_funcionario();*/
+            system("clear");
+            listar_funcionario();
             break;
         case 3:
             /*system("clear");
@@ -259,16 +264,16 @@ void    run_options_operacoes()
     switch (opcao)
     {
         case 1:
-            /*system("clear");
-            criar_operacao();*/
+            system("clear");
+            criar_operacao();
             break;
         case 2:
             /*system("clear");
             atualizar_operacao();*/
             break;
         case 3:
-            /*system("clear");
-            listar_operacao();*/
+            system("clear");
+            listar_operacao();
             break;
         case 4:
             /*system("clear");
@@ -304,12 +309,12 @@ void    run_options_postos()
     switch (opcao)
     {
         case 1:
-            /*system("clear");
-            adicionar_posto();*/
+            system("clear");
+            adicionar_posto();
             break;
         case 2:
-            /*system("clear");
-            listar_posto();*/
+            system("clear");
+            listar_posto();
             break;
         case 3:
             /*system("clear");

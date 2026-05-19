@@ -5,6 +5,6 @@
 #include "ficheiros.h"
 
 void    adicionar_empresa();
-void listar_empresa(void);
+int listar_empresa(void);
 
 #endif
