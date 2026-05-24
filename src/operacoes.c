@@ -41,88 +41,88 @@ void criar_operacao(void)
 
     if (total_operacoes >= MAX_OPERACOES)
     {
-        printf("Limite de operacoes atingido.\n");
+        printf(RED "LIMITE DE OPERAÇÕES ATINGIDO.\n" RESET);
         return ;
     }
 
     nova.id = total_operacoes + 100;
 
-    printf("Tipo Processo:\n");
-    printf("0 - GARANTIA\n");
-    printf("1 - REPARACAO\n");
-    printf("2 - ABATIMENTO\n");
-    printf("3 - TRANSFERENCIA\n");
+    printf(GREEN "TIPO DO PROCESSO:\n" RESET);
+    printf(YELLOW "0 - GARANTIA\n" RESET);
+    printf(YELLOW "1 - REPARACAO\n" RESET);
+    printf(YELLOW "2 - ABATIMENTO\n" RESET);
+    printf(YELLOW "3 - TRANSFERENCIA\n" RESET);
 
 	do{
     	scanf("%d", (int *)&nova.tipo_processo);
 	}while(!(nova.tipo_processo >= 0 && nova.tipo_processo <= 3));
-
+    printf("------------------------------------------------------------------------------------------\n");
     if (!listar_componente())
 	{
-		printf("COMPONENTES PRECISAM SER CADASTRADOS...\n");
+		printf(RED "COMPONENTES PRECISAM SER CADASTRADOS...\n" RESET);
         return ;
 	}
 
-    printf("\nID componente: ");
+    printf(GREEN "\nID DO COMPONENTE: " RESET);
     scanf("%d", &nova.id_componente);
-
+    printf("------------------------------------------------------------------------------------------\n");
     if (!listar_empresa())
 	{
-		printf("EMPRESAS PRECISAM SER CADASTRADOS...\n");
+		printf(RED "EMPRESAS PRECISAM SER CADASTRADOS...\n" RESET);
         return ;
 	}
 
-    printf("ID empresa: ");
+    printf(GREEN "ID DA EMPRESA: " RESET);
     scanf("%d", &nova.id_empresa);
-
+    printf("------------------------------------------------------------------------------------------\n");
     if (!listar_posto())
 	{
-		printf("POSTOS PRECISAM SER CADASTRADOS...\n");
+		printf(RED "POSTOS PRECISAM SER CADASTRADOS...\n" RESET);
         return ;
 	}
 
-    printf("ID posto: ");
+    printf(GREEN "ID DO POSTO: " RESET);
     scanf("%d", &nova.id_posto_trabalho);
-
+    printf("------------------------------------------------------------------------------------------\n");
     if (listar_funcionario())
 	{
-		printf("FUNCIONÁRIOS PRECISAM SER CADASTRADOS...\n");
+		printf(RED "FUNCIONÁRIOS PRECISAM SER CADASTRADOS...\n" RESET);
         return ;
 	}
 
-    printf("ID funcionario: ");
+    printf(GREEN "ID DO FUNCIONÁRIO: " RESET);
     scanf("%d", &nova.id_funcionario);
-
-    printf("Documento interno: ");
+    printf("------------------------------------------------------------------------------------------\n");
+    printf(GREEN "Nº DE DOCUMENTO INTERNO: " RESET);
     scanf("%d",
             &nova.numero_documento_interno);
-
-    printf("Documento externo: ");
+    printf("------------------------------------------------------------------------------------------\n");
+    printf(GREEN "Nº DE DOCUMENTO EXTERNO: " RESET);
     scanf("%d",
             &nova.numero_documento_externo);
 
     getchar();
-
-    printf("Data saida: ");
+    printf("------------------------------------------------------------------------------------------\n");
+    printf(GREEN "DATA DE SAÍDA: " RESET);
     fgets(nova.data_saida,
             sizeof(nova.data_saida), stdin);
 
     nova.data_saida[
         strcspn(nova.data_saida, "\n")] = '\0';
-
-    printf("Data prevista: ");
+    printf("------------------------------------------------------------------------------------------\n");
+    printf(GREEN "DATA PREVISTA DE CHEGADA: " RESET);
     fgets(nova.data_prevista,
             sizeof(nova.data_prevista), stdin);
 
     nova.data_prevista[
         strcspn(nova.data_prevista, "\n")] = '\0';
-
-    printf("Montante: ");
+    printf("------------------------------------------------------------------------------------------\n");
+    printf(GREEN "MONTANTE: " RESET);
     scanf("%lf", &nova.montante);
 
     getchar();
-
-    printf("Observacao: ");
+    printf("------------------------------------------------------------------------------------------\n");
+    printf(GREEN "OBSERVAÇÃO: " RESET);
     fgets(nova.observacao,
             sizeof(nova.observacao), stdin);
 
@@ -136,10 +136,10 @@ void criar_operacao(void)
     operacoes[total_operacoes] = nova;
 
     total_operacoes++;
-
+    printf("------------------------------------------------------------------------------------------\n");
     salvarDados();
 
-    printf("\nOperacao criada com sucesso.\n");
+    printf(GREEN "\nOPERAÇÃO CADASTRADA COM SUCESSO.\n" RESET);
 }
 
 void listar_operacao(void)

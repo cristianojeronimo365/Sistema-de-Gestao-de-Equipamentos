@@ -27,7 +27,7 @@ void adicionar_componente(void)
 
     if (total_componentes >= MAX_COMPONENTES)
     {
-        printf("Limite de componentes atingido.\n");
+        printf(RED "LIMITE DE COMPONENTES ATINGIDO.\n" RESET);
         return ;
     }
 
@@ -35,74 +35,74 @@ void adicionar_componente(void)
 
     getchar();
 
-    printf("Designacao: ");
+    printf(GREEN "DESIGNAÇÃO DO COMPONENTE: " RESET);
     fgets(novo.designacao,
             sizeof(novo.designacao), stdin);
 
     novo.designacao[
         strcspn(novo.designacao, "\n")] = '\0';
-
-    printf("Numero de serie: ");
+    printf("------------------------------------------------------------------------------------------\n");
+    printf(GREEN "NÚMERO DE SÉRIE: " RESET);
     fgets(novo.numero_serie,
             sizeof(novo.numero_serie), stdin);
 
     novo.numero_serie[
         strcspn(novo.numero_serie, "\n")] = '\0';
-
-    printf("Data aquisicao: ");
+    printf("------------------------------------------------------------------------------------------\n");
+    printf(GREEN "DATA DE AQUISIÇÃO: " RESET);
     fgets(novo.data_aquisicao,
             sizeof(novo.data_aquisicao), stdin);
 
     novo.data_aquisicao[
         strcspn(novo.data_aquisicao, "\n")] = '\0';
-
-    printf("Data garantia: ");
+    printf("------------------------------------------------------------------------------------------\n");
+    printf(GREEN "DATA DE GARANTIA: " RESET);
     fgets(novo.data_garantia,
             sizeof(novo.data_garantia), stdin);
 
     novo.data_garantia[
         strcspn(novo.data_garantia, "\n")] = '\0';
-
-    printf("Tipo:\n");
-    printf("0 - ELECTRONICO\n");
-    printf("1 - MECANICO\n");
+    printf("------------------------------------------------------------------------------------------\n");
+    printf(GREEN "TIPO DO COMPONENTE:\n" RESET);
+    printf(YELLOW "0 - ELECTRÓNICO\n" RESET);
+    printf(YELLOW "1 - MECÂNICO\n" RESET);
 	
 	do {
     	scanf("%d", (int *)&novo.tipo);
 	}while (novo.tipo != 0 && novo.tipo != 1);
-
-    printf("Condicao:\n");
-    printf("0 - NOVO\n");
-    printf("1 - UTILIZADO\n");
+    printf("------------------------------------------------------------------------------------------\n");
+    printf(GREEN "CONDIÇÃO:\n" RESET);
+    printf(YELLOW "0 - NOVO\n" RESET);
+    printf(YELLOW "1 - UTILIZADO\n" RESET);
 	do {
     	scanf("%d", (int *)&novo.condicao);
 	}while (novo.condicao != 0 && novo.condicao != 1);
 
-
+    printf("------------------------------------------------------------------------------------------\n");
     if (!listar_empresa())
 	{
-		printf("EMPRESAS PRECISAM SER CADASTRADOS...\n");
+		printf(RED "EMPRESAS PRECISAM SER CADASTRADOS...\n"RESET);
         return ;
 	}
 
-    printf("\nID fornecedor: ");
+    printf(GREEN "\nID DO FORNACEDOR: " RESET);
     scanf("%d", &novo.id_fornecedor);
 
-    printf("ID fabricante: ");
+    printf(GREEN "ID DO FABRICANTE: " RESET);
     scanf("%d", &novo.id_fabricante);
-
+    printf("------------------------------------------------------------------------------------------\n");
     if (!listar_posto())
 	{
-		printf("POSTOS PRECISAM SER CADASTRADOS...\n");
+		printf(RED "POSTOS PRECISAM SER CADASTRADOS...\n"RESET);
         return ;
 	}
 
-    printf("ID posto: ");
+    printf(GREEN "ID DO POSTO: " RESET);
     scanf("%d", &novo.id_posto_trabalho);
 
     getchar();
-
-    printf("Observacao: ");
+    printf("------------------------------------------------------------------------------------------\n");
+    printf(GREEN "OBSERVAÇÃO: " RESET);
     fgets(novo.observacao,
             sizeof(novo.observacao), stdin);
 
@@ -112,10 +112,10 @@ void adicionar_componente(void)
     componentes[total_componentes] = novo;
 
     total_componentes++;
-
+    printf("------------------------------------------------------------------------------------------\n");
     salvarDados();
 
-    printf("\nComponente criado com sucesso.\n");
+    printf(GREEN "\nCOMPONENTE CADASTRADO COM SUCESSO.\n" RESET);
 }
 
 int listar_componente(void)
@@ -129,7 +129,9 @@ int listar_componente(void)
     }
 
     i = 0;
-
+    /*printf(GREEN"\t\t\t-------------------------------------------------------------------------\n"RESET);
+    printf(GREEN "\t\t\t|  ID  |        DESIGNAÇÃO        |    NÚMERO DE SÉRIE     |       TIPO       |     CONDIÇÃO     |        POSTO        |\n" RESET);
+    printf(GREEN"\t\t\t-------------------------------------------------------------------------\n"RESET);*/
     while (i < total_componentes)
     {
         printf("\nID: %d\n",

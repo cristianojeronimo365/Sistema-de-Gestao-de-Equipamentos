@@ -8,7 +8,7 @@ void adicionar_posto(void)
 
     if (total_postos >= MAX_POSTOS)
     {
-        printf("Limite de postos atingido.\n");
+        printf(RED "LIMITE DE POSTO ATINGIDO.\n" RESET);
         return ;
     }
 
@@ -16,41 +16,44 @@ void adicionar_posto(void)
 
     getchar();
 
-    printf("Nome: ");
+    printf(GREEN "NOME DO POSTO: " RESET);
     fgets(novo.nome, sizeof(novo.nome), stdin);
     novo.nome[strcspn(novo.nome, "\n")] = '\0';
+    printf("------------------------------------------------------------------------------------------\n");
 
-    printf("Local: ");
+    printf(GREEN "LOCAL: " RESET);
     fgets(novo.local, sizeof(novo.local), stdin);
     novo.local[strcspn(novo.local, "\n")] = '\0';
+    printf("------------------------------------------------------------------------------------------\n");
 
-    printf("Seccao: ");
+    printf(GREEN "SECÇÃO: " RESET);
     fgets(novo.seccao, sizeof(novo.seccao), stdin);
     novo.seccao[strcspn(novo.seccao, "\n")] = '\0';
+    printf("------------------------------------------------------------------------------------------\n");
 
-    printf("Descricao: ");
+    printf(GREEN "DESCRIÇÃO: " RESET);
     fgets(novo.descricao,
             sizeof(novo.descricao), stdin);
 
     novo.descricao[
         strcspn(novo.descricao, "\n")] = '\0';
-
+    printf("------------------------------------------------------------------------------------------\n");
     if (!listar_funcionario())
 	{
-		printf("FUNCIONÁRIOS PRECISAM SER CADASTRADOS...\n");
+		printf(RED "FUNCIONÁRIOS PRECISAM SER CADASTRADOS...\n" RESET);
         return ;
 	}
 
-    printf("\nID do funcionario responsavel: ");
+    printf(GREEN "\nID DO FUNCIONÁRIO RESPONSÁVEL: " RESET);
     scanf("%d", &novo.id_funcionario);
 
     postos[total_postos] = novo;
 
     total_postos++;
-
+    printf("------------------------------------------------------------------------------------------\n");
     salvarDados();
 
-    printf("\nPosto criado com sucesso.\n");
+    printf(GREEN "\nPOSTO CADASTRADO COM SUCESSO.\n" RESET);
 }
 
 int listar_posto(void)
@@ -59,7 +62,7 @@ int listar_posto(void)
 
     if (total_postos == 0)
     {
-        printf("\nNenhum posto cadastrado.\n");
+        printf(RED "\nNENHUM POSTO CADASTRADO.\n" REST);
         return (0);
     }
 

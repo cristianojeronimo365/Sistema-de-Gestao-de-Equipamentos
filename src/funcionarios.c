@@ -7,7 +7,7 @@ void adicionar_funcionario(void)
 
     if (total_funcionarios >= MAX_FUNCIONARIOS)
     {
-        printf("Limite de funcionarios atingido.\n");
+        printf(RED "LIMITE DE FUNCIONÁRIOS ATINGIDO.\n" RESET);
         return ;
     }
 
@@ -15,25 +15,25 @@ void adicionar_funcionario(void)
 
     getchar();
 
-    printf("Nome: ");
+    printf(GREEN "NOME DO FUNCIONÁRIO: " RESET);
     fgets(novo.nome, sizeof(novo.nome), stdin);
     novo.nome[strcspn(novo.nome, "\n")] = '\0';
-
-    printf("Funcao: ");
+    printf("------------------------------------------------------------------------------------------\n");
+    printf(GREEN "FUNCÃO: " RESET);
     fgets(novo.funcao, sizeof(novo.funcao), stdin);
     novo.funcao[strcspn(novo.funcao, "\n")] = '\0';
-
-    printf("Descricao: ");
+    printf("------------------------------------------------------------------------------------------\n");
+    printf(GREEN "DESIGNAÇÃO: " RESET);
     fgets(novo.descricao, sizeof(novo.descricao), stdin);
     novo.descricao[strcspn(novo.descricao, "\n")] = '\0';
 
     funcionarios[total_funcionarios] = novo;
 
     total_funcionarios++;
-
+    printf("------------------------------------------------------------------------------------------\n");
     salvarDados();
 
-    printf("\nFuncionario cadastrado com sucesso.\n");
+    printf(GREEN "\nFUNCIONÁRIO CADASTRADO COM SUCESSO.\n" RESET);
 }
 
 
@@ -43,18 +43,20 @@ int listar_funcionario(void)
 
     if (total_funcionarios == 0)
     {
-        printf("\nNenhum funcionario cadastrado.\n");
+        printf(RED "\nNENHUM FUNCIONÁRIO CADASTRADO.\n" RESET);
         return (0);
     }
 
     i = 0;
-
+    /*printf(GREEN"\t\t\t-------------------------------------------------------------------------\n"RESET);
+    printf(GREEN "\t\t\t|  ID  |          NOME          |        FUNCÃO        |         DESIGNAÇÃO         |\n" RESET);
+    printf(GREEN"\t\t\t-------------------------------------------------------------------------\n"RESET);*/
     while (i < total_funcionarios)
     {
-        printf("\nID: %d\n", funcionarios[i].id);
-        printf("Nome: %s\n", funcionarios[i].nome);
-        printf("Funcao: %s\n", funcionarios[i].funcao);
-        printf("Descricao: %s\n",
+        printf("\n%d\n", funcionarios[i].id);
+        printf("%s\n", funcionarios[i].nome);
+        printf("%s\n", funcionarios[i].funcao);
+        printf("%s\n",
                 funcionarios[i].descricao);
 
         printf("--------------------------\n");
