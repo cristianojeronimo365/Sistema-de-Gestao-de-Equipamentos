@@ -66,7 +66,6 @@ void adicionar_componente(void)
     printf(GREEN "TIPO DO COMPONENTE:\n" RESET);
     printf(YELLOW "0 - ELECTRÓNICO\n" RESET);
     printf(YELLOW "1 - MECÂNICO\n" RESET);
-	
 	do {
     	scanf("%d", (int *)&novo.tipo);
 	}while (novo.tipo != 0 && novo.tipo != 1);
@@ -124,37 +123,32 @@ int listar_componente(void)
 
     if (total_componentes == 0)
     {
-        printf("\nNenhum componente cadastrado.\n");
+        printf(RED "\nNENHUM COMPONENTE CADASTRADO.\n" RESET);
         return (0);
     }
 
     i = 0;
-    /*printf(GREEN"\t\t\t-------------------------------------------------------------------------\n"RESET);
-    printf(GREEN "\t\t\t|  ID  |        DESIGNAÇÃO        |    NÚMERO DE SÉRIE     |       TIPO       |     CONDIÇÃO     |        POSTO        |\n" RESET);
-    printf(GREEN"\t\t\t-------------------------------------------------------------------------\n"RESET);*/
+    printf(GREEN"\t\t\t------------------------------------------------------------------------------------------------------------------------\n"RESET);
+    printf(GREEN "\t\t\t|  ID  |        DESIGNAÇÃO       |    NÚMERO DE SÉRIE      |       TIPO              |     CONDIÇÃO            | POSTO |\n" RESET);
+    printf(GREEN"\t\t\t------------------------------------------------------------------------------------------------------------------------\n"RESET);
     while (i < total_componentes)
     {
-        printf("\nID: %d\n",
-                componentes[i].id);
 
-        printf("Designacao: %s\n",
-                componentes[i].designacao);
+        printf(GREEN "\t\t\t| " RESET);
+        printf("%d", componentes[i].id);
+        printf(GREEN "  | " RESET);
 
-        printf("Numero Serie: %s\n",
-                componentes[i].numero_serie);
-
-        printf("Tipo: %s\n",
-                obterTipoComponente(
-                    componentes[i].tipo));
-
-        printf("Condicao: %s\n",
-                obterCondicao(
-                    componentes[i].condicao));
-
-        printf("Posto: %d\n",
-                componentes[i].id_posto_trabalho);
-
-        printf("--------------------------\n");
+        format_printf(componentes[i].designacao);
+        printf(GREEN " | " RESET);
+        format_printf(componentes[i].numero_serie);
+        printf(GREEN " | " RESET);
+        format_printf((char *)obterTipoComponente(componentes[i].tipo));
+        printf(GREEN " | " RESET);
+        format_printf((char *)obterCondicao(componentes[i].condicao));
+        printf(GREEN " |  " RESET);
+        printf("%d", componentes[i].id_posto_trabalho);
+        printf(GREEN "  |\n" RESET);
+        printf(GREEN"\t\t\t------------------------------------------------------------------------------------------------------------------------\n"RESET);
 
         i++;
     }

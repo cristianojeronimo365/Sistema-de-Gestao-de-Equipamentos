@@ -62,23 +62,32 @@ int listar_posto(void)
 
     if (total_postos == 0)
     {
-        printf(RED "\nNENHUM POSTO CADASTRADO.\n" REST);
+        printf(RED "\nNENHUM POSTO CADASTRADO.\n" RESET);
         return (0);
     }
 
     i = 0;
-
+    printf(GREEN"\t-----------------------------------------------------------------------------------------------------------------------------------\n"RESET);
+    printf(GREEN "\t|  ID  |            NOME            |        LOCAL            |        SECÇÃO           |         DESCRIÇÃO       |  RESPONSÁVEL  |\n" RESET);
+    printf(GREEN"\t-----------------------------------------------------------------------------------------------------------------------------------\n"RESET);
     while (i < total_postos)
     {
-        printf("\nID: %d\n", postos[i].id);
-        printf("Nome: %s\n", postos[i].nome);
-        printf("Local: %s\n", postos[i].local);
-        printf("Seccao: %s\n", postos[i].seccao);
 
-        printf("Funcionario Responsavel: %d\n",
-                postos[i].id_funcionario);
+        printf(GREEN "\t| " RESET);
+        printf("%d", postos[i].id);
+        printf(GREEN "  |   " RESET);
 
-        printf("--------------------------\n");
+        format_printf(postos[i].nome);
+        printf(GREEN "  | " RESET);
+        format_printf(postos[i].local);
+        printf(GREEN " | " RESET);
+        format_printf(postos[i].seccao);
+        printf(GREEN " | " RESET);
+        format_printf(postos[i].descricao);
+        printf(GREEN " |      " RESET);
+        printf("%d", postos[i].id_funcionario);
+        printf(GREEN "      |\n" RESET);
+        printf(GREEN"\t-----------------------------------------------------------------------------------------------------------------------------------\n"RESET);
 
         i++;
     }

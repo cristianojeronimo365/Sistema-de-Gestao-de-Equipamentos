@@ -57,8 +57,8 @@ typedef struct s_componentes
     char            designacao[50];
     char            numero_serie[30];
 
-    char            data_aquisicao[11];
-    char            data_garantia[11];
+    char            data_aquisicao[13];
+    char            data_garantia[13];
 
     int             id_fornecedor;
     int             id_fabricante;
@@ -133,5 +133,7 @@ typedef struct s_operacoes
     char                observacao[100];
 
 } t_operacoes;
+
+void format_printf(char *str);
 
 #endif

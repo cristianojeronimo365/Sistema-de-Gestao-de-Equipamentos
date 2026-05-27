@@ -36,7 +36,6 @@ void adicionar_funcionario(void)
     printf(GREEN "\nFUNCIONÁRIO CADASTRADO COM SUCESSO.\n" RESET);
 }
 
-
 int listar_funcionario(void)
 {
     int i;
@@ -48,19 +47,21 @@ int listar_funcionario(void)
     }
 
     i = 0;
-    /*printf(GREEN"\t\t\t-------------------------------------------------------------------------\n"RESET);
-    printf(GREEN "\t\t\t|  ID  |          NOME          |        FUNCÃO        |         DESIGNAÇÃO         |\n" RESET);
-    printf(GREEN"\t\t\t-------------------------------------------------------------------------\n"RESET);*/
+    printf(GREEN"\t\t\t------------------------------------------------------------------------------------------\n"RESET);
+    printf(GREEN "\t\t\t|  ID  |            NOME            |        FUNCÃO           |         DESCRIÇÃO        |\n" RESET);
+    printf(GREEN"\t\t\t------------------------------------------------------------------------------------------\n"RESET);
     while (i < total_funcionarios)
     {
-        printf("\n%d\n", funcionarios[i].id);
-        printf("%s\n", funcionarios[i].nome);
-        printf("%s\n", funcionarios[i].funcao);
-        printf("%s\n",
-                funcionarios[i].descricao);
-
-        printf("--------------------------\n");
-
+        printf(GREEN "\t\t\t| " RESET);
+        printf("%d", funcionarios[i].id);
+        printf(GREEN "  |   " RESET);
+        format_printf(funcionarios[i].nome);
+        printf(GREEN "  | " RESET);
+        format_printf(funcionarios[i].funcao);
+        printf(GREEN " | " RESET);
+        format_printf(funcionarios[i].descricao);
+        printf(GREEN "  |\n" RESET);
+        printf(GREEN"\t\t\t------------------------------------------------------------------------------------------\n"RESET);
         i++;
     }
 	return (1);

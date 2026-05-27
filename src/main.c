@@ -8,6 +8,29 @@
 
 int main();
 
+void format_printf(char *str)
+{
+    int len;
+
+    len = strlen(str);
+    if (len <= 20)
+    {
+        printf("%s", str);
+        while (len++ < 23)
+                printf(" ");
+    }
+    else
+    {
+        len = 0;
+        while (len < 20)
+        {
+            printf("%c", str[len]);
+            len++;
+        }
+        printf("...");
+    }
+}
+
 void    menu_principal()
 
 {

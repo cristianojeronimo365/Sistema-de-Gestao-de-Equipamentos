@@ -148,7 +148,7 @@ void listar_operacao(void)
 
     if (total_operacoes == 0)
     {
-        printf("\nNenhuma operacao cadastrada.\n");
+        printf(RED "\nNENHUMA OPERAÇÃO CADASTRADA.\n" RESET);
         return ;
     }
 
