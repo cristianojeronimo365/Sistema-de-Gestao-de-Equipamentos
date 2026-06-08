@@ -6,5 +6,6 @@
 
 void    adicionar_empresa();
 int listar_empresa(void);
+char *buscarEmpresaPorId(int id);
 
 #endif

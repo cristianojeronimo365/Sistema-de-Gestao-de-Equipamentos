@@ -6,5 +6,6 @@
 
 void adicionar_componente(void);
 int listar_componente(void);
+char *buscarComponentePorId(int id);
 
 #endif

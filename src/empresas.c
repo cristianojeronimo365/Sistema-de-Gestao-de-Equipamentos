@@ -2,7 +2,7 @@
 #include "../includes/sistema_gestao.h"
 
 
-static const char *obterTipoEmpresa(TipoEmpresa tipo)
+static char *obterTipoEmpresa(TipoEmpresa tipo)
 {
     if (tipo == FORNECEDOR)
         return ("FORNECEDOR");
@@ -18,7 +18,19 @@ static const char *obterTipoEmpresa(TipoEmpresa tipo)
 
     return (NULL);
 }
+char *buscarEmpresaPorId(int id)
+{
+    int i;
 
+    i = 0;
+    while (i < total_empresas)
+    {
+        if (empresas[i].id == id)
+            return (empresas[i].nome);
+        i++;
+    }
+    return (NULL);
+}
 void adicionar_empresa(void)
 {
     t_empresas nova_empresa;
@@ -82,41 +94,22 @@ int listar_empresa(void)
     i = 0;
     len = 0;
 
-    printf(GREEN"\t\t\t-------------------------------------------------------------------------\n"RESET);
-    printf(GREEN "\t\t\t|  ID  |          NOME          |        TIPO        |     CONTACTO     |\n" RESET);
-    printf(GREEN"\t\t\t-------------------------------------------------------------------------\n"RESET);
+    printf(GREEN"\t\t\t--------------------------------------------------------------------------------------\n"RESET);
+    printf(GREEN "\t\t\t|  ID  |          NOME           |           TIPO          |        CONTACTO         |\n" RESET);
+    printf(GREEN"\t\t\t--------------------------------------------------------------------------------------\n"RESET);
 
     while (i < total_empresas)
     {
         printf(GREEN "\t\t\t| " RESET);
         printf("%d", empresas[i].id);
-        printf(GREEN "  |     " RESET);
-        len = strlen(empresas[i].nome);
-        if (len <= 14)
-        {
-            printf("%s", empresas[i].nome);
-            while (len++ < 17)
-                printf(" ");
-        }
-        else
-        {
-            len = 0;
-            while (len < 14)
-            {
-                printf("%c", empresas[i].nome[len]);
-                len++;
-            }
-            printf("...");
-        }
-        printf(GREEN "  |      " RESET);
-        printf("%s", obterTipoEmpresa(empresas[i].tipo));
-        len = strlen(obterTipoEmpresa(empresas[i].tipo));
-        while (len++ < 14)
-            printf(" ");
-        printf(GREEN "|     " RESET);
-        printf("%s", empresas[i].contacto);
-        printf(GREEN "    |\n" RESET);
-        printf(GREEN"\t\t\t-------------------------------------------------------------------------\n"RESET);
+        printf(GREEN "  | " RESET);
+        format_printf(empresas[i].nome);
+        printf(GREEN " | " RESET);
+        format_printf(obterTipoEmpresa(empresas[i].tipo));
+        printf(GREEN " | " RESET);
+        format_printf(empresas[i].contacto);
+        printf(GREEN " |\n" RESET);
+        printf(GREEN"\t\t\t--------------------------------------------------------------------------------------\n"RESET);
         i++;
     }
 	return (1);

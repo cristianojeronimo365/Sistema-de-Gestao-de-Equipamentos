@@ -3,7 +3,7 @@
 #include "../includes/empresas.h"
 #include "../includes/postos.h"
 
-static const char *obterTipoComponente(
+static char *obterTipoComponente(
         TipoComponente tipo)
 {
     if (tipo == ELECTRONICO)
@@ -12,13 +12,27 @@ static const char *obterTipoComponente(
     return ("MECANICO");
 }
 
-static const char *obterCondicao(
+static char *obterCondicao(
         TipoCondicao condicao)
 {
     if (condicao == NOVO)
         return ("NOVO");
 
     return ("UTILIZADO");
+}
+
+char *buscarComponentePorId(int id)
+{
+    int i;
+
+    i = 0;
+    while (i < total_componentes)
+    {
+        if (componentes[i].id == id)
+            return (componentes[i].designacao);
+        i++;
+    }
+    return (NULL);
 }
 
 void adicionar_componente(void)
@@ -128,9 +142,9 @@ int listar_componente(void)
     }
 
     i = 0;
-    printf(GREEN"\t\t\t------------------------------------------------------------------------------------------------------------------------\n"RESET);
-    printf(GREEN "\t\t\t|  ID  |        DESIGNAÇÃO       |    NÚMERO DE SÉRIE      |       TIPO              |     CONDIÇÃO            | POSTO |\n" RESET);
-    printf(GREEN"\t\t\t------------------------------------------------------------------------------------------------------------------------\n"RESET);
+    printf(GREEN"\t\t\t--------------------------------------------------------------------------------------------------------------------------------------------\n"RESET);
+    printf(GREEN "\t\t\t|  ID  |        DESIGNAÇÃO       |    NÚMERO DE SÉRIE      |       TIPO              |     CONDIÇÃO            |           POSTO           |\n" RESET);
+    printf(GREEN"\t\t\t--------------------------------------------------------------------------------------------------------------------------------------------\n"RESET);
     while (i < total_componentes)
     {
 
@@ -142,13 +156,13 @@ int listar_componente(void)
         printf(GREEN " | " RESET);
         format_printf(componentes[i].numero_serie);
         printf(GREEN " | " RESET);
-        format_printf((char *)obterTipoComponente(componentes[i].tipo));
+        format_printf(obterTipoComponente(componentes[i].tipo));
         printf(GREEN " | " RESET);
-        format_printf((char *)obterCondicao(componentes[i].condicao));
+        format_printf(obterCondicao(componentes[i].condicao));
         printf(GREEN " |  " RESET);
-        printf("%d", componentes[i].id_posto_trabalho);
+        format_printf(buscarPostoPorId(componentes[i].id_posto_trabalho));
         printf(GREEN "  |\n" RESET);
-        printf(GREEN"\t\t\t------------------------------------------------------------------------------------------------------------------------\n"RESET);
+        printf(GREEN"\t\t\t--------------------------------------------------------------------------------------------------------------------------------------------\n"RESET);
 
         i++;
     }

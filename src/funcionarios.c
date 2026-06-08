@@ -1,6 +1,20 @@
 #include "../includes/funcionarios.h"
 #include "../includes/sistema_gestao.h"
 
+char *buscarFuncionarioPorId(int id)
+{
+    int i;
+
+    i = 0;
+    while (i < total_funcionarios)
+    {
+        if (funcionarios[i].id == id)
+            return (funcionarios[i].nome);
+        i++;
+    }
+    return (NULL);
+}
+
 void adicionar_funcionario(void)
 {
     t_funcionarios novo;

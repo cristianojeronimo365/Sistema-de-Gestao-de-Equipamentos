@@ -7,5 +7,6 @@
 
 void adicionar_funcionario(void);
 int listar_funcionario(void);
+char *buscarFuncionarioPorId(int id);
 
 #endif

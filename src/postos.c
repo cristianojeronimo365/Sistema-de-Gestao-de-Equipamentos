@@ -2,6 +2,20 @@
 #include "../includes/sistema_gestao.h"
 #include "../includes/funcionarios.h"
 
+char *buscarPostoPorId(int id)
+{
+    int i;
+
+    i = 0;
+    while (i < total_postos)
+    {
+        if (postos[i].id == id)
+            return (postos[i].nome);
+        i++;
+    }
+    return (NULL);
+}
+
 void adicionar_posto(void)
 {
     t_posto_trabalhos novo;
@@ -67,9 +81,9 @@ int listar_posto(void)
     }
 
     i = 0;
-    printf(GREEN"\t-----------------------------------------------------------------------------------------------------------------------------------\n"RESET);
-    printf(GREEN "\t|  ID  |            NOME            |        LOCAL            |        SECÇÃO           |         DESCRIÇÃO       |  RESPONSÁVEL  |\n" RESET);
-    printf(GREEN"\t-----------------------------------------------------------------------------------------------------------------------------------\n"RESET);
+    printf(GREEN"\t--------------------------------------------------------------------------------------------------------------------------------------------------\n"RESET);
+    printf(GREEN "\t|  ID  |            NOME            |        LOCAL            |        SECÇÃO           |         DESCRIÇÃO       |         RESPONSÁVEL          |\n" RESET);
+    printf(GREEN"\t--------------------------------------------------------------------------------------------------------------------------------------------------\n"RESET);
     while (i < total_postos)
     {
 
@@ -84,10 +98,10 @@ int listar_posto(void)
         format_printf(postos[i].seccao);
         printf(GREEN " | " RESET);
         format_printf(postos[i].descricao);
-        printf(GREEN " |      " RESET);
-        printf("%d", postos[i].id_funcionario);
+        printf(GREEN " | " RESET);
+        format_printf(buscarFuncionarioPorId(postos[i].id_funcionario));
         printf(GREEN "      |\n" RESET);
-        printf(GREEN"\t-----------------------------------------------------------------------------------------------------------------------------------\n"RESET);
+        printf(GREEN"\t--------------------------------------------------------------------------------------------------------------------------------------------------\n"RESET);
 
         i++;
     }

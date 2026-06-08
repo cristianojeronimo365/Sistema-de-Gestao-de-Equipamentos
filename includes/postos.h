@@ -6,5 +6,6 @@
 
 void adicionar_posto(void);
 int listar_posto(void);
+char *buscarPostoPorId(int id);
 
 #endif

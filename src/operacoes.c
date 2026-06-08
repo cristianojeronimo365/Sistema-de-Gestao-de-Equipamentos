@@ -5,7 +5,7 @@
 #include "../includes/postos.h"
 #include "../includes/funcionarios.h"
 
-static const char *obterTipoProcesso(
+static char *obterTipoProcesso(
         TipoProcesso tipo)
 {
     if (tipo == GARANTIA)
@@ -20,7 +20,7 @@ static const char *obterTipoProcesso(
     return ("TRANSFERENCIA");
 }
 
-static const char *obterStatus(
+static char *obterStatus(
         StatusOperacao status)
 {
     if (status == PENDENTE)
@@ -84,7 +84,7 @@ void criar_operacao(void)
     printf(GREEN "ID DO POSTO: " RESET);
     scanf("%d", &nova.id_posto_trabalho);
     printf("------------------------------------------------------------------------------------------\n");
-    if (listar_funcionario())
+    if (!listar_funcionario())
 	{
 		printf(RED "FUNCIONÁRIOS PRECISAM SER CADASTRADOS...\n" RESET);
         return ;
@@ -116,6 +116,7 @@ void criar_operacao(void)
 
     nova.data_prevista[
         strcspn(nova.data_prevista, "\n")] = '\0';
+    //getchar();
     printf("------------------------------------------------------------------------------------------\n");
     printf(GREEN "MONTANTE: " RESET);
     scanf("%lf", &nova.montante);
@@ -153,33 +154,32 @@ void listar_operacao(void)
     }
 
     i = 0;
-
+    printf(GREEN"\t\t\t---------------------------------------------------------------------------------------------------------------------------------------------------------------\n"RESET);
+    printf(GREEN "\t\t\t|  ID  |          TIPO          |         ESTADO         |       COMPONENTE       |         EMPRESA        |       FUNCIONÁRIO      |      DATA DE SAÍDA      |\n" RESET);
+    printf(GREEN"\t\t\t---------------------------------------------------------------------------------------------------------------------------------------------------------------\n"RESET);
     while (i < total_operacoes)
     {
-        printf("\nID: %d\n",
-                operacoes[i].id);
-
-        printf("Tipo Processo: %s\n",
-                obterTipoProcesso(
+        printf(GREEN "\t\t\t| " RESET);
+        printf("%d", operacoes[i].id);
+        printf(GREEN "  | " RESET);
+        format_printf(obterTipoProcesso(
                     operacoes[i].tipo_processo));
-
-        printf("Status: %s\n",
-                obterStatus(
+        printf(GREEN "| " RESET);
+        format_printf(obterStatus(
                     operacoes[i].status));
-
-        printf("Componente: %d\n",
-                operacoes[i].id_componente);
-
-        printf("Empresa: %d\n",
-                operacoes[i].id_empresa);
-
-        printf("Funcionario: %d\n",
-                operacoes[i].id_funcionario);
-
-        printf("Data Saida: %s\n",
-                operacoes[i].data_saida);
-
-        printf("--------------------------\n");
+        printf(GREEN "| " RESET);
+        format_printf(buscarComponentePorId(
+                   operacoes[i].id_componente));
+        printf(GREEN "| " RESET);
+        format_printf(buscarEmpresaPorId(
+                   operacoes[i].id_empresa));
+        printf(GREEN "| " RESET);
+        format_printf(buscarFuncionarioPorId(
+                   operacoes[i].id_funcionario));
+        printf(GREEN "|  " RESET);
+        format_printf(operacoes[i].data_saida);
+        printf(GREEN "|\n" RESET);
+        printf(GREEN"\t\t\t---------------------------------------------------------------------------------------------------------------------------------------------------------------\n"RESET);
 
         i++;
     }
