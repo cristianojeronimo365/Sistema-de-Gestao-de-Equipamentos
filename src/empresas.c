@@ -109,7 +109,6 @@ void adicionar_empresa(void)
 int listar_empresa(void)
 {
     int i;
-    int len;
 
     if (total_empresas == 0)
     {
@@ -118,7 +117,6 @@ int listar_empresa(void)
     }
 
     i = 0;
-    len = 0;
 
     printf(GREEN"\t\t\t--------------------------------------------------------------------------------------\n"RESET);
     printf(GREEN "\t\t\t|  ID  |          NOME           |           TIPO          |        CONTACTO         |\n" RESET);
