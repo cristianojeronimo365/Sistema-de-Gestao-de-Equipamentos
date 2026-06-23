@@ -167,20 +167,20 @@ void    run_options_componentes()
             listar_componente();
             break;
         case 3:
-            /*system("clear");
-            pesquisar_componente();*/
+            system("clear");
+            pesquisar_componente();
             break;
         case 4:
-            /*system("clear");
-            actualizar_componente();*/
+            system("clear");
+            actualizar_componente();
             break;
         case 5:
-            /*system("clear");
-            remover_componente();*/
+            system("clear");
+            remover_componente();
             break;
         case 6:
-            /*system("clear");
-            mover_componente();*/
+            system("clear");
+            mover_componente();
             break;
         case 0:
             printf("\t\t" RED "VOLTANDO PARA O MENU PRINCIPAL...\n" RESET);
@@ -212,16 +212,16 @@ void    run_options_empresas()
             listar_empresa();
             break;
         case 3:
-            /*system("clear");
-            pesquisar_empresa();*/
+            system("clear");
+            pesquisar_empresa();
             break;
         case 4:
-            /*system("clear");
-            actualizar_empresa();*/
+            system("clear");
+            actualizar_empresa();
             break;
         case 5:
-            /*system("clear");
-            remover_empresa();*/
+            system("clear");
+            remover_empresa();
             break;
         case 0:
             printf("\t\t" RED "VOLTANDO PARA O MENU PRINCIPAL...\n" RESET);
@@ -254,16 +254,16 @@ void    run_options_funcionarios()
             listar_funcionario();
             break;
         case 3:
-            /*system("clear");
-            pesquisar_funcionario();*/
+            system("clear");
+            pesquisar_funcionario();
             break;
         case 4:
-            /*system("clear");
-            actualizar_funcionario();*/
+            system("clear");
+            actualizar_funcionario();
             break;
         case 5:
-            /*system("clear");
-            remover_funcionario();*/
+            system("clear");
+            remover_funcionario();
             break;
         case 0:
             printf("\t\t" RED "VOLTANDO PARA O MENU PRINCIPAL...\n" RESET);
@@ -340,16 +340,16 @@ void    run_options_postos()
             listar_posto();
             break;
         case 3:
-            /*system("clear");
-            pesquisar_posto();*/
+            system("clear");
+            pesquisar_posto();
             break;
         case 4:
-            /*system("clear");
-            actualizar_posto();*/
+            system("clear");
+            actualizar_posto();
             break;
         case 5:
-            /*system("clear");
-            remover_posto();*/
+            system("clear");
+            remover_posto();
             break;
         case 0:
             printf("\t\t" RED "VOLTANDO PARA O MENU PRINCIPAL...\n" RESET);

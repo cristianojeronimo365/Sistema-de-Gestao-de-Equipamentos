@@ -169,13 +169,13 @@ void listar_operacao(void)
                     operacoes[i].status));
         printf(GREEN "| " RESET);
         format_printf(buscarComponentePorId(
-                   operacoes[i].id_componente));
+                   operacoes[i].id_componente)->designacao);
         printf(GREEN "| " RESET);
         format_printf(buscarEmpresaPorId(
-                   operacoes[i].id_empresa));
+                   operacoes[i].id_empresa)->nome);
         printf(GREEN "| " RESET);
         format_printf(buscarFuncionarioPorId(
-                   operacoes[i].id_funcionario));
+                   operacoes[i].id_funcionario)->nome);
         printf(GREEN "|  " RESET);
         format_printf(operacoes[i].data_saida);
         printf(GREEN "|\n" RESET);

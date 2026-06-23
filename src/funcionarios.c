@@ -1,7 +1,32 @@
 #include "../includes/funcionarios.h"
 #include "../includes/sistema_gestao.h"
 
-char *buscarFuncionarioPorId(int id)
+static int funcionarioEstaEmUso(int id_funcionario)
+{
+    int i;
+
+    i = 0;
+    while (i < total_postos)
+    {
+        if (postos[i].id_funcionario == id_funcionario)
+            return (1);
+
+        i++;
+    }
+
+    i = 0;
+    while (i < total_operacoes)
+    {
+        if (operacoes[i].id_funcionario == id_funcionario)
+            return (1);
+
+        i++;
+    }
+
+    return (0);
+}
+
+t_funcionarios *buscarFuncionarioPorId(int id)
 {
     int i;
 
@@ -9,7 +34,7 @@ char *buscarFuncionarioPorId(int id)
     while (i < total_funcionarios)
     {
         if (funcionarios[i].id == id)
-            return (funcionarios[i].nome);
+            return (&funcionarios[i]);
         i++;
     }
     return (NULL);
@@ -79,4 +104,137 @@ int listar_funcionario(void)
         i++;
     }
 	return (1);
+}
+
+void pesquisar_funcionario(void)
+{
+    int id;
+    t_funcionarios *funcionario;
+
+    if (!listar_funcionario())
+	{
+		printf(RED "FUNCIONÁRIOS PRECISAM SER CADASTRADOS...\n" RESET);
+        return ;
+	}
+
+    printf(GREEN "\nID DO FUNCIONÁRIO: " RESET);
+    scanf("%d", &id);
+
+    funcionario = buscarFuncionarioPorId(id);
+
+    if (!funcionario)
+    {
+        printf(RED "\nFUNCIONÁRIO NÃO ENCONTRADO.\n" RESET);
+        return ;
+    }
+    system("clear");
+    printf(YELLOW "\nDADOS DO FUNCIONÁRIO PESQUISADO\n" RESET);
+
+    printf(GREEN "ID: " RESET "%d\n", funcionario->id);
+    printf(GREEN "NOME: " RESET "%s\n", funcionario->nome);
+    printf(GREEN "FUNÇÃO: " RESET "%s\n", funcionario->funcao);
+    printf(GREEN "DESCRIÇÃO: " RESET "%s\n", funcionario->descricao);
+}
+
+void actualizar_funcionario(void)
+{
+    int id;
+    t_funcionarios *funcionario;
+
+    if (!listar_funcionario())
+	{
+		printf(RED "FUNCIONÁRIOS PRECISAM SER CADASTRADOS...\n" RESET);
+        return ;
+	}
+
+    printf(GREEN "\nID DO FUNCIONÁRIO: " RESET);
+    scanf("%d", &id);
+
+    funcionario = buscarFuncionarioPorId(id);
+
+    if (!funcionario)
+    {
+        printf(RED "\nFUNCIONÁRIO NÃO ENCONTRADA.\n" RESET);
+        return ;
+    }
+
+    getchar();
+    printf("------------------------------------------------------------------------------------------\n");
+    printf(GREEN "NOVO NOME DO FUNCIONÁRIO: " RESET);
+    fgets(funcionario->nome,
+        sizeof(funcionario->nome),
+        stdin);
+    printf("------------------------------------------------------------------------------------------\n");
+    funcionario->nome[
+        strcspn(funcionario->nome, "\n")] = '\0';
+
+    printf(GREEN "NOVA FUNÇÃO DO FUNCIONÁRIO: " RESET);
+    fgets(funcionario->funcao,
+        sizeof(funcionario->funcao),
+        stdin);
+    printf("------------------------------------------------------------------------------------------\n");
+    funcionario->funcao[
+        strcspn(funcionario->funcao, "\n")] = '\0';
+
+    printf(GREEN "NOVA DESCRIÇÃO DO FUNCIONÁRIO: " RESET);
+    fgets(funcionario->descricao,
+        sizeof(funcionario->descricao),
+        stdin);
+    
+    funcionario->descricao[
+        strcspn(funcionario->descricao, "\n")] = '\0';
+
+    salvarDados();
+    printf("------------------------------------------------------------------------------------------\n");
+    printf(GREEN "FUNCIONÁRIO ACTUALIZADO COM SUCESSO...\n" RESET);
+}
+
+void remover_funcionario(void)
+{
+    int id;
+    int i;
+
+    if (!listar_funcionario())
+	{
+		printf(RED "FUNCIONÁRIOS PRECISAM SER CADASTRADOS...\n" RESET);
+        return ;
+	}
+    printf(GREEN "\nID DO FUNCIONÁRIO: " RESET);
+    scanf("%d", &id);
+
+    if (funcionarioEstaEmUso(id))
+    {
+        printf(RED
+            "\nNÃO É POSSÍVEL REMOVER."
+            "\nFUNCIONÁRIO ASSOCIADO A POSTOS "
+            "OU OPERAÇÕES.\n"RESET);
+
+        return ;
+    }
+
+    i = 0;
+
+    while (i < total_funcionarios)
+    {
+        if (funcionarios[i].id == id)
+        {
+            while (i < total_funcionarios - 1)
+            {
+                funcionarios[i] = funcionarios[i + 1];
+                i++;
+            }
+
+            total_funcionarios--;
+
+            salvarDados();
+
+             printf(GREEN "FUNCIONÁRIO REMOVIDO COM SUCESSO...\n" RESET);
+
+            return ;
+        }
+
+        i++;
+    }
+
+    printf(RED "\nFUNCIONÁRIO NÃO ENCONTRADO.\n" RESET);
 }

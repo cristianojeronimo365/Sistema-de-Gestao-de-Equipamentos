@@ -18,7 +18,33 @@ static char *obterTipoEmpresa(TipoEmpresa tipo)
 
     return (NULL);
 }
-char *buscarEmpresaPorId(int id)
+
+static int empresaEstaEmUso(int id_empresa)
+{
+    int i;
+
+    i = 0;
+    while (i < total_componentes)
+    {
+        if (componentes[i].id_fornecedor == id_empresa
+            || componentes[i].id_fabricante == id_empresa)
+            return (1);
+
+        i++;
+    }
+
+    i = 0;
+    while (i < total_operacoes)
+    {
+        if (operacoes[i].id_empresa == id_empresa)
+            return (1);
+
+        i++;
+    }
+
+    return (0);
+}
+t_empresas *buscarEmpresaPorId(int id)
 {
     int i;
 
@@ -26,7 +52,7 @@ char *buscarEmpresaPorId(int id)
     while (i < total_empresas)
     {
         if (empresas[i].id == id)
-            return (empresas[i].nome);
+            return (&empresas[i]);
         i++;
     }
     return (NULL);
@@ -113,4 +139,145 @@ int listar_empresa(void)
         i++;
     }
 	return (1);
+}
+
+void pesquisar_empresa(void)
+{
+    int id;
+    t_empresas *empresa;
+
+    if (!listar_empresa())
+	{
+		printf(RED "EMPRESAS PRECISAM SER CADASTRADAS...\n" RESET);
+        return ;
+	}
+
+    printf(GREEN "\nID DA EMPRESA: " RESET);
+    scanf("%d", &id);
+
+    empresa = buscarEmpresaPorId(id);
+
+    if (!empresa)
+    {
+        printf(RED "\nEMPRESA NÃO ENCONTRADA.\n" RESET);
+        return ;
+    }
+    system("clear");
+    printf(YELLOW "\nDADOS DA EMPRESA PESQUISADA\n" RESET);
+
+    printf(GREEN "ID: " RESET "%d\n", empresa->id);
+    printf(GREEN "NOME: " RESET "%s\n", empresa->nome);
+    printf(GREEN "TIPO: " RESET "%s\n", obterTipoEmpresa(empresa->tipo));
+    printf(GREEN "CONTACTO: " RESET "%s\n", empresa->contacto);
+}
+
+void actualizar_empresa(void)
+{
+    int id;
+    t_empresas *empresa;
+
+    if (!listar_empresa())
+	{
+		printf(RED "EMPRESAS PRECISAM SER CADASTRADAS...\n" RESET);
+        return ;
+	}
+
+    printf(GREEN "\nID DA EMPRESA: " RESET);
+    scanf("%d", &id);
+
+    empresa = buscarEmpresaPorId(id);
+
+    if (!empresa)
+    {
+        printf(RED "\nEMPRESA NÃO ENCONTRADA.\n" RESET);
+        return ;
+    }
+
+    getchar();
+    printf("------------------------------------------------------------------------------------------\n");
+    printf(GREEN "NOVO NOME DA EMPRESA: " RESET);
+    fgets(empresa->nome,
+        sizeof(empresa->nome),
+        stdin);
+    printf("------------------------------------------------------------------------------------------\n");
+    empresa->nome[
+        strcspn(empresa->nome, "\n")] = '\0';
+
+    printf(GREEN "TIPO DA EMPRESA:\n" RESET);
+    printf(YELLOW "0 - FORNECEDOR\n"RESET);
+    printf(YELLOW "1 - FABRICANTE\n"RESET);
+    printf(YELLOW "2 - RECICLAGEM\n"RESET);
+    printf(YELLOW "3 - AGENCIA\n"RESET);
+    printf("------------------------------------------------------------------------------------------\n");
+    do{
+        printf(GREEN "ESCOLHA UM TIPO CORRESPONDENTE: " RESET);
+        scanf("%d", (int *)&empresa->tipo);
+    }while(!obterTipoEmpresa(empresa->tipo));
+
+    getchar();
+    printf("------------------------------------------------------------------------------------------\n");
+    do{
+        printf(GREEN "NOVO CONTACTO: " RESET);
+
+        fgets(empresa->contacto,
+            sizeof(empresa->contacto),
+            stdin);
+    }while((strlen(empresa->contacto) - 1) != 9);
+
+    empresa->contacto[
+        strcspn(empresa->contacto, "\n")] = '\0';
+
+    salvarDados();
+
+    printf("------------------------------------------------------------------------------------------\n");
+    printf(GREEN "EMPRESA ACTUALIZADA COM SUCESSO...\n" RESET);
+}
+void remover_empresa(void)
+{
+    int id;
+    int i;
+
+    if (!listar_empresa())
+	{
+		printf(RED "EMPRESAS PRECISAM SER CADASTRADAS...\n" RESET);
+        return ;
+	}
+    printf(GREEN "\nID DA EMPRESA: " RESET);
+    scanf("%d", &id);
+
+    if (empresaEstaEmUso(id))
+    {
+        printf(RED
+            "\nNÃO É POSSÍVEL REMOVER."
+            "\nEMPRESA ASSOCIADA A COMPONENTES "
+            "OU OPERAÇÕES.\n"RESET);
+
+        return ;
+    }
+
+    i = 0;
+
+    while (i < total_empresas)
+    {
+        if (empresas[i].id == id)
+        {
+            while (i < total_empresas - 1)
+            {
+                empresas[i] = empresas[i + 1];
+                i++;
+            }
+
+            total_empresas--;
+
+            salvarDados();
+
+            printf(GREEN "EMPRESA REMOVIDA COM SUCESSO...\n" RESET);
+
+            return ;
+        }
+
+        i++;
+    }
+
+    printf(RED "\nEMPRESA NÃO ENCONTRADA.\n" RESET);
 }

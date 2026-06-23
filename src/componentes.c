@@ -2,6 +2,7 @@
 #include "../includes/sistema_gestao.h"
 #include "../includes/empresas.h"
 #include "../includes/postos.h"
+#include "../includes/funcionarios.h"
 
 static char *obterTipoComponente(
         TipoComponente tipo)
@@ -21,7 +22,23 @@ static char *obterCondicao(
     return ("UTILIZADO");
 }
 
-char *buscarComponentePorId(int id)
+static int componenteEstaEmUso(int id_componente)
+{
+    int i;
+
+    i = 0;
+    while (i < total_operacoes)
+    {
+        if (operacoes[i].id_componente == id_componente)
+            return (1);
+
+        i++;
+    }
+
+    return (0);
+}
+
+t_componentes *buscarComponentePorId(int id)
 {
     int i;
 
@@ -29,7 +46,7 @@ char *buscarComponentePorId(int id)
     while (i < total_componentes)
     {
         if (componentes[i].id == id)
-            return (componentes[i].designacao);
+            return (&componentes[i]);
         i++;
     }
     return (NULL);
@@ -160,11 +177,229 @@ int listar_componente(void)
         printf(GREEN " | " RESET);
         format_printf(obterCondicao(componentes[i].condicao));
         printf(GREEN " |  " RESET);
-        format_printf(buscarPostoPorId(componentes[i].id_posto_trabalho));
+        format_printf(buscarPostoPorId(componentes[i].id_posto_trabalho)->nome);
         printf(GREEN "  |\n" RESET);
         printf(GREEN"\t\t\t--------------------------------------------------------------------------------------------------------------------------------------------\n"RESET);
 
         i++;
     }
 	return (1);
+}
+
+void pesquisar_componente(void)
+{
+    int id;
+    t_componentes *componente;
+
+    if (!listar_componente())
+	{
+		printf(RED "COMPONENTES DE TRABALHO PRECISAM SER CADASTRADOS...\n" RESET);
+        return ;
+	}
+
+    printf(GREEN "\nID DO COMPONENTE: " RESET);
+    scanf("%d", &id);
+
+    componente = buscarComponentePorId(id);
+
+    if (!componente)
+    {
+        printf(RED "\nCOMPONENTE NÃO ENCONTRADO.\n" RESET);
+        return ;
+    }
+    system("clear");
+    printf(YELLOW "\nDADOS DO COMPONENTE PESQUISADO\n" RESET);
+
+    printf(GREEN "ID: " RESET "%d\n", componente->id);
+    printf(GREEN "DESIGNAÇÃO: " RESET "%s\n", componente->designacao);
+    printf(GREEN "NÚMERO DE SÉRIE: " RESET "%s\n", componente->numero_serie);
+    printf(GREEN "DATA DE AQUISIÇÃO: " RESET "%s\n", componente->data_aquisicao);
+    printf(GREEN "DATA DE GARANTIA: " RESET "%s\n", componente->data_garantia);
+    printf(GREEN "FORNECEDOR: " RESET "%s\n", buscarFuncionarioPorId(componente->id_fornecedor)->nome);
+    printf(GREEN "FABRICANTE: " RESET "%s\n", buscarFuncionarioPorId(componente->id_fabricante)->nome);
+    printf(GREEN "POSTO DE TRABALHO: " RESET "%s\n", buscarPostoPorId(componente->id_posto_trabalho)->nome);
+    printf(GREEN "OBSERVAÇÃO: " RESET "%s\n", componente->observacao);
+}
+
+void actualizar_componente(void)
+{
+    int id;
+    t_componentes *componente;
+
+    if (!listar_componente())
+	{
+		printf(RED "COMPONENTES DE TRABALHO PRECISAM SER CADASTRADOS...\n" RESET);
+        return ;
+	}
+
+    printf(GREEN "\nID DO COMPONENTE: " RESET);
+    scanf("%d", &id);
+
+    componente = buscarComponentePorId(id);
+
+    if (!componente)
+    {
+        printf(RED "\nCOMPONENTE NÃO ENCONTRADO.\n" RESET);
+        return ;
+    }
+
+    getchar();
+    printf("------------------------------------------------------------------------------------------\n");
+    printf(GREEN "\nNOVA DESIGNAÇÃO: " RESET);
+    fgets(componente->designacao,
+        sizeof(componente->designacao),
+        stdin);
+    printf("------------------------------------------------------------------------------------------\n");
+    componente->designacao[
+        strcspn(componente->designacao, "\n")] = '\0';
+
+    printf(GREEN "NOVO NÚMERO DE SÉRIE: " RESET);
+    fgets(componente->numero_serie,
+        sizeof(componente->numero_serie),
+        stdin);
+    printf("------------------------------------------------------------------------------------------\n");
+    componente->numero_serie[
+        strcspn(componente->numero_serie, "\n")] = '\0';
+
+    printf(GREEN "NOVA DATA DE GARANTIA: " RESET);
+    fgets(componente->data_garantia,
+        sizeof(componente->data_garantia),
+        stdin);
+    printf("------------------------------------------------------------------------------------------\n");
+    componente->data_garantia[
+        strcspn(componente->data_garantia, "\n")] = '\0';
+
+    if (!listar_empresa())
+	{
+		printf(RED "EMPRESAS PRECISAM SER CADASTRADAS...\n" RESET);
+        return ;
+	}
+
+    printf(GREEN "\nNOVO FORNECEDOR: " RESET);
+    scanf("%d", &componente->id_fornecedor);
+
+    printf(GREEN "NOVO FABRICANTE: " RESET);
+    scanf("%d", &componente->id_fabricante);
+    printf("------------------------------------------------------------------------------------------\n");
+    
+    if (!listar_posto())
+	{
+		printf(RED "POSTOS DE TRABALHO PRECISAM SER CADASTRADOS...\n" RESET);
+        return ;
+	}
+
+    printf(GREEN "NOVO POSTO: " RESET);
+    scanf("%d", &componente->id_posto_trabalho);
+
+    getchar();
+    printf("------------------------------------------------------------------------------------------\n");
+    printf(GREEN "NOVA OBSERVAÇÃO: " RESET);
+    fgets(componente->observacao,
+        sizeof(componente->observacao),
+        stdin);
+
+    componente->observacao[
+        strcspn(componente->observacao, "\n")] = '\0';
+
+    salvarDados();
+
+    printf(GREEN "COMPONENTE ACTUALIZADO COM SUCESSO...\n" RESET);
+}
+
+void remover_componente(void)
+{
+    int id;
+    int i;
+
+    if (!listar_componente())
+	{
+		printf(RED "COMPONENTES DE TRABALHO PRECISAM SER CADASTRADOS...\n" RESET);
+        return ;
+	}
+
+    printf(GREEN "\nID DO COMPONENTE: " RESET);
+    scanf("%d", &id);
+
+    if (componenteEstaEmUso(id))
+    {
+        printf(RED
+            "\nNÃO É POSSÍVEL REMOVER."
+            "\nCOMPONENTE ASSOCIADO A OPERAÇÕES\n" RESET);
+
+        return ;
+    }
+
+    i = 0;
+
+    while (i < total_componentes)
+    {
+        if (componentes[i].id == id)
+        {
+            while (i < total_componentes - 1)
+            {
+                componentes[i] =
+                    componentes[i + 1];
+                i++;
+            }
+
+            total_componentes--;
+
+            salvarDados();
+
+            printf(GREEN "COMPONENTE REMOVIDO COM SUCESSO...\n" RESET);
+
+            return ;
+        }
+
+        i++;
+    }
+
+    printf(RED "\nCOMPONENTE NÃO ENCONTRADO.\n" RESET);
+}
+
+void mover_componente(void)
+{
+    int id_componente;
+    int novo_posto;
+
+    t_componentes *componente;
+
+    if (!listar_componente())
+	{
+		printf(RED "COMPONENTES DE TRABALHO PRECISAM SER CADASTRADOS...\n" RESET);
+        return ;
+	}
+
+    printf(GREEN "\nID DO COMPONENTE: " RESET);
+    scanf("%d", &id_componente);
+
+    componente =
+        buscarComponentePorId(
+            id_componente);
+
+    if (!componente)
+    {
+        printf(RED "\nCOMPONENTE NÃO ENCONTRADO.\n" RESET);
+        return ;
+    }
+    printf("------------------------------------------------------------------------------------------\n");
+    printf(GREEN
+        "\nPOSTO ACTUAL: " RESET "%d\n",
+        componente->id_posto_trabalho);
+    printf("------------------------------------------------------------------------------------------\n");
+    if (!listar_posto())
+	{
+		printf(RED "POSTOS DE TRABALHO PRECISAM SER CADASTRADOS...\n" RESET);
+        return ;
+	}
+
+    printf("\nNOVO POSTO: ");
+    scanf("%d", &novo_posto);
+
+    componente->id_posto_trabalho =
+        novo_posto;
+
+    salvarDados();
+
+    printf(GREEN "COMPONENTE MOVIDO COM SUCESSO...\n" RESET);
 }
