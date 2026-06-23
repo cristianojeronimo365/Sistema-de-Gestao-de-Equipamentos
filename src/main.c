@@ -291,24 +291,24 @@ void    run_options_operacoes()
             criar_operacao();
             break;
         case 2:
-            /*system("clear");
-            atualizar_operacao();*/
+            system("clear");
+            atualizar_operacao();
             break;
         case 3:
             system("clear");
             listar_operacao();
             break;
         case 4:
-            /*system("clear");
-            pesquisar_operacao();*/
+            system("clear");
+            pesquisar_operacao();
             break;
         case 5:
-            /*system("clear");
-            operacoes_pendentes();*/
+            system("clear");
+            operacoes_pendentes();
             break;
         case 6:
-            /*system("clear");
-            operacoes_concluidas();*/
+            system("clear");
+            operacoes_concluidas();
             break;
         case 0:
             printf("\t\t" RED "VOLTANDO PARA O MENU PRINCIPAL...\n" RESET);

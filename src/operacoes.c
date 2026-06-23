@@ -31,8 +31,23 @@ static char *obterStatus(
 
     else if (status == CONCLUIDO)
         return ("CONCLUIDO");
+    else if (status == CANCELADO)
+        return ("CANCELADO");
+    return (NULL);
+}
 
-    return ("CANCELADO");
+t_operacoes *buscarOperacaoPorId(int id)
+{
+    int i;
+
+    i = 0;
+    while (i < total_operacoes)
+    {
+        if (operacoes[i].id == id)
+            return (&operacoes[i]);
+        i++;
+    }
+    return (NULL);
 }
 
 void criar_operacao(void)
@@ -143,14 +158,14 @@ void criar_operacao(void)
     printf(GREEN "\nOPERAÇÃO CADASTRADA COM SUCESSO.\n" RESET);
 }
 
-void listar_operacao(void)
+int listar_operacao(void)
 {
     int i;
 
     if (total_operacoes == 0)
     {
         printf(RED "\nNENHUMA OPERAÇÃO CADASTRADA.\n" RESET);
-        return ;
+        return (0);
     }
 
     i = 0;
@@ -180,6 +195,184 @@ void listar_operacao(void)
         format_printf(operacoes[i].data_saida);
         printf(GREEN "|\n" RESET);
         printf(GREEN"\t\t\t---------------------------------------------------------------------------------------------------------------------------------------------------------------\n"RESET);
+
+        i++;
+    }
+    return (1);
+}
+void atualizar_operacao(void)
+{
+    int id;
+    int opcao;
+    t_operacoes *op;
+
+    if (!listar_operacao())
+	{
+		printf(RED "OPERAÇÕES PRECISAM SER CADASTRADAS...\n" RESET);
+        return ;
+	}
+
+    printf(GREEN "ID DA OPERAÇÃO: " RESET);
+    scanf("%d", &id);
+
+    op = buscarOperacaoPorId(id);
+
+    if (!op)
+    {
+        printf(RED "OPERAÇÃO NÃO ENCONTRADA.\n" RESET);
+        return ;
+    }
+    printf("\n");
+    printf("------------------------------------------------------------------------------------------\n");
+    printf(GREEN "ACTUALIZAR STATUS DA OPERAÇÃO:\n" RESET);
+    printf(YELLOW "0 - CONCLUIR OPERAÇÃO\n" RESET);
+    printf(YELLOW "1 - CANCELAR OPERAÇÃO\n" RESET);
+    do{
+        printf(GREEN "ESCOLHA UMA ACÇÃO CORRESPONDENTE: " RESET);
+        scanf("%d", &opcao);
+    }while(!obterStatus(opcao));
+
+    getchar();
+
+    if (opcao == 0)
+    {
+        op->status = CONCLUIDO;
+        printf("------------------------------------------------------------------------------------------\n");
+        printf(GREEN "DATA DE CONCLUSÃO: " RESET);
+
+        fgets(op->data_conclusao,
+                sizeof(op->data_conclusao),
+                stdin);
+
+        op->data_conclusao[
+            strcspn(op->data_conclusao, "\n")] = '\0';
+    }
+
+    else if (opcao == 1)
+        op->status = CANCELADO;
+
+    salvarDados();
+
+    printf(GREEN "OPERAÇÃO ACTUALIZADA COM SUCESSO...\n" RESET);
+}
+
+void pesquisar_operacao(void)
+{
+    int id;
+    t_operacoes *op;
+
+    if (!listar_operacao())
+	{
+		printf(RED "OPERAÇÕES PRECISAM SER CADASTRADAS...\n" RESET);
+        return ;
+	}
+
+    printf(GREEN "ID DA OPERACAO: " RESET);
+    scanf("%d", &id);
+
+    op = buscarOperacaoPorId(id);
+
+    if (!op)
+    {
+        printf(RED "OPERAÇÃO NÃO ENCONTRADA.\n" RESET);
+        return ;
+    }
+
+    system("clear");
+    printf(YELLOW "\nDADOS DA OPERAÇÃO PESQUISADA\n" RESET);
+    printf(GREEN "ID: " RESET "%d\n", op->id);
+
+    printf(GREEN "TIPO DO PROCESSO: " RESET "%s\n",
+            obterTipoProcesso(
+                op->tipo_processo));
+
+    printf(GREEN "STATUS: " RESET "%s\n",
+            obterStatus(
+                op->status));
+
+    printf(GREEN "COMPONENTE: " RESET "%s\n",
+        buscarComponentePorId(
+            op->id_componente)->designacao);
+
+    printf(GREEN "EMPRESA: " RESET "%s\n",
+        buscarEmpresaPorId(
+            op->id_empresa)->nome);
+
+    printf(GREEN "FUNCIONARIO: " RESET "%s\n",
+        buscarFuncionarioPorId(
+            op->id_funcionario)->nome);
+
+    printf(GREEN "POSTO DE TRABALHO: " RESET "%s\n",
+        buscarPostoPorId(
+            op->id_posto_trabalho)->nome);
+
+    printf(GREEN "DATA DE SAIDA: " RESET "%s\n",
+            op->data_saida);
+
+    printf(GREEN "DATA PREVISTA DE CHEGADA: " RESET "%s\n",
+            op->data_prevista);
+
+    printf(GREEN "DATA DE CONCLUSÃO: " RESET "%s\n",
+            op->data_conclusao);
+
+    printf(GREEN "MONTANTE: " RESET "%.2lf\n",
+            op->montante);
+
+    printf(GREEN "OBSERVAÇÃO: " RESET "%s\n",
+            op->observacao);
+}
+
+void operacoes_pendentes(void)
+{
+    int i;
+
+    i = 0;
+    printf(GREEN"\t\t\t--------------------------------------------------------------\n"RESET);
+    printf(GREEN "\t\t\t|  ID  |          STATUS          |        COMPONENTE        |\n" RESET);
+    printf(GREEN"\t\t\t--------------------------------------------------------------\n"RESET);
+    while (i < total_operacoes)
+    {
+        if (operacoes[i].status == PENDENTE
+            || operacoes[i].status == EM_ANDAMENTO)
+        {
+            printf(GREEN "\t\t\t| " RESET);
+            printf("%d", operacoes[i].id);
+            printf(GREEN "  | " RESET);
+            format_printf(obterStatus(
+                    operacoes[i].status));
+            printf(GREEN "  | " RESET);
+            format_printf(buscarComponentePorId(
+                    operacoes[i].id_componente)->designacao);
+            printf(GREEN "  |\n" RESET);
+            printf(GREEN"\t\t\t--------------------------------------------------------------\n"RESET);
+        }
+
+        i++;
+    }
+}
+
+void operacoes_concluidas(void)
+{
+    int i;
+
+    i = 0;
+    printf(GREEN"\t\t\t-----------------------------------------------------------------\n"RESET);
+    printf(GREEN "\t\t\t|  ID  |      DATA DE CONCLUSÃO      |        COMPONENTE        |\n" RESET);
+    printf(GREEN"\t\t\t-----------------------------------------------------------------\n"RESET);
+    while (i < total_operacoes)
+    {
+        if (operacoes[i].status == CONCLUIDO)
+        {
+            printf(GREEN "\t\t\t| " RESET);
+            printf("%d", operacoes[i].id);
+            printf(GREEN "  |   " RESET);
+            format_printf(operacoes[i].data_conclusao);
+            printf(GREEN "   | " RESET);
+            format_printf(buscarComponentePorId(
+                    operacoes[i].id_componente)->designacao);
+            printf(GREEN "  |\n" RESET);
+             printf(GREEN"\t\t\t-----------------------------------------------------------------\n"RESET);
+        }
 
         i++;
     }
