@@ -10,6 +10,7 @@ void    atualizar_operacao(void);
 void    pesquisar_operacao(void);
 void    operacoes_pendentes(void);
 void    operacoes_concluidas(void);
+char *obterTipoProcesso(TipoProcesso tipo);
 
 t_operacoes *buscarOperacaoPorId(int id);
 

@@ -5,6 +5,7 @@
 #include "../includes/postos.h"
 #include "../includes/componentes.h"
 #include "../includes/operacoes.h"
+#include "../includes/pesquisas_avancadas.h"
 
 int main();
 
@@ -373,28 +374,28 @@ void    run_options_avancadas()
     switch (opcao)
     {
         case 1:
-            /*system("clear");
-            componentes_posto();*/
+            system("clear");
+            componentes_posto();
             break;
         case 2:
-            /*system("clear");
-            componentes_garantia();*/
+            system("clear");
+            componentes_garantia();
             break;
         case 3:
-            /*system("clear");
-            componentes_atrasados();*/
+            system("clear");
+            componentes_atrasados();
             break;
         case 4:
-            /*system("clear");
-            empresas_utilizadas();*/
+            system("clear");
+            empresas_utilizadas();
             break;
         case 5:
-            /*system("clear");
-            operacoes_empresa();*/
+            system("clear");
+            operacoes_empresa();
             break;
         case 6:
-            /*system("clear");
-            operacoes_funcionario();*/
+            system("clear");
+            operacoes_funcionario();
             break;
         case 0:
             printf("\t\t" RED "VOLTANDO PARA O MENU PRINCIPAL...\n" RESET);

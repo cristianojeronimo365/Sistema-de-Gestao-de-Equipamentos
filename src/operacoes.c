@@ -5,7 +5,7 @@
 #include "../includes/postos.h"
 #include "../includes/funcionarios.h"
 
-static char *obterTipoProcesso(
+char *obterTipoProcesso(
         TipoProcesso tipo)
 {
     if (tipo == GARANTIA)

@@ -4,7 +4,8 @@ CFLAGS= -Wall -Wextra -Werror -Iinclude
 
 SRCS= ./src/componentes.c ./src/empresas.c ./src/funcionarios.c\
 		./src/main.c ./src/operacoes.c ./src/postos.c ./src/ficheiros.c \
-		./src/globals.c
+		./src/globals.c ./src/pesquisas_avancadas.c
+
 OBJS= $(SRCS:.c=.o)
 
 all: $(NAME)
